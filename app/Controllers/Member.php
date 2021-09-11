@@ -44,4 +44,30 @@ class Member extends BaseController
             return redirect()->to(base_url('member'));
         }
     }
+
+    public function edit($id)
+    {
+        $data['member'] = $this->member->getMember($id);
+        return view('member/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $nama = $this->request->getPost('nama');
+        $jkel = $this->request->getPost('jkel');
+        $alamat = $this->request->getPost('alamat');
+
+        $data = [
+            'nama' => $nama,
+            'jkel' => $jkel,
+            'alamat' => $alamat,
+        ];
+
+        $update = $this->member->updateData($data, $id);
+
+        if ($update) {
+            session()->setFlashdata('message', 'diubah');
+            return redirect()->to(base_url('member'));
+        }
+    }
 }

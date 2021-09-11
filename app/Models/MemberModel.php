@@ -14,7 +14,7 @@ class MemberModel extends Model
     /* protected $returnType           = 'array'; */
     /* protected $useSoftDeletes       = false; */
     /* protected $protectFields        = true; */
-    /* protected $allowedFields        = []; */
+    protected $allowedFields        = ['nama', 'jkel', 'alamat', 'tgl_daftar'];
 
     // Dates
     /* protected $useTimestamps        = false; */
@@ -42,12 +42,13 @@ class MemberModel extends Model
 
     public function getMember($id = false)
     {
-        if ($id == false) {
+        if ($id === false) {
             return $this->table('anggota')
                 ->get()
                 ->getResultArray();
         } else {
             return $this->table('anggota')
+                ->where('id_anggota', $id)
                 ->get()
                 ->getRowArray();
         }
@@ -56,5 +57,10 @@ class MemberModel extends Model
     public function insertData($data)
     {
         return $this->db->table('anggota')->insert($data);
+    }
+
+    public function updateData($data, $id)
+    {
+        return $this->db->table('anggota')->update($data, ['id_anggota' => $id]);
     }
 }
