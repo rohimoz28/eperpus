@@ -70,4 +70,14 @@ class Member extends BaseController
             return redirect()->to(base_url('member'));
         }
     }
+
+    public function delete($id)
+    {
+        $delete = $this->member->deleteData($id);
+
+        if ($delete) {
+            session()->setFlashdata('message', 'dihapus');
+            return redirect()->to(base_url('member'));
+        }
+    }
 }

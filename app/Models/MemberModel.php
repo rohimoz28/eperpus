@@ -63,4 +63,9 @@ class MemberModel extends Model
     {
         return $this->db->table('anggota')->update($data, ['id_anggota' => $id]);
     }
+
+    public function deleteData($id)
+    {
+        return $this->db->table('anggota')->delete(['id_anggota' => $id]);
+    }
 }
