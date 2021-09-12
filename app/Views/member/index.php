@@ -1,5 +1,9 @@
 <?= $this->extend('layout/master-layout') ?>
 
+<?php $this->section('title') ?>
+Daftar Anggota
+<?php $this->endSection() ?>
+
 <?php $this->section('content') ?>
 <div class="container">
     <div class="row">

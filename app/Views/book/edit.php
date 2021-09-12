@@ -1,7 +1,7 @@
 <?php $this->extend('layout/master-layout') ?>
 
 <?php $this->section('title') ?>
-<title>Update Book</title>
+Ubah Buku
 <?php $this->endSection() ?>
 
 <?php $this->section('content') ?>

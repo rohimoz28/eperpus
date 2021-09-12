@@ -1,4 +1,7 @@
 <?= $this->extend('layout/master-layout') ?>
+<?php $this->section('title') ?>
+Daftar Buku
+<?php $this->endSection() ?>
 
 <?php $this->section('content') ?>
 

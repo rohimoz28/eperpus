@@ -1,7 +1,7 @@
 <?php $this->extend('layout/master-layout') ?>
 
 <?php $this->section('title') ?>
-<title>New Member</title>
+Tambah Anggota
 <?php $this->endSection() ?>
 
 <?php $this->section('content') ?>
