@@ -54,4 +54,14 @@ class BookModel extends Model
     {
         return $this->table('buku')->insert($data);
     }
+
+    public function updateBook($data, $id)
+    {
+        return $this->db->table('buku')->update($data, ['id_buku' => $id]);
+    }
+
+    public function deleteBook($id)
+    {
+        return $this->table('book')->delete(['id_buku' => $id]);
+    }
 }

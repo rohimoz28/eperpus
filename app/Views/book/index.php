@@ -44,7 +44,7 @@
                             <td><?= $book['penulis'] ?></td>
                             <td>
                                 <a href="<?= base_url('book/edit/' . $book['id_buku']) ?>" class="badge badge-pill badge-warning">Ubah</a>
-                                <a onClick="return confirm('Hapus anggota ini...?')" href="<?= base_url('buku/delete/' . $book['id_buku']) ?>" class="badge badge-pill badge-danger">Hapus</a>
+                                <a onClick="return confirm('Hapus anggota ini...?')" href="<?= base_url('book/delete/' . $book['id_buku']) ?>" class="badge badge-pill badge-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
