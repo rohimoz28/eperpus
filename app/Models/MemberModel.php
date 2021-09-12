@@ -44,6 +44,7 @@ class MemberModel extends Model
     {
         if ($id === false) {
             return $this->table('anggota')
+                ->orderBy('nama', 'asc')
                 ->get()
                 ->getResultArray();
         } else {

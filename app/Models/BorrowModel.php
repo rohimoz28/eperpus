@@ -4,18 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BookModel extends Model
+class BorrowModel extends Model
 {
     protected $DBGroup              = 'default';
-    /* protected $table                = 'books'; */
-    protected $table                = 'buku';
-    protected $primaryKey           = 'id_buku';
+    protected $table                = 'sewa';
+    protected $primaryKey           = 'id_sewa';
     /* protected $useAutoIncrement     = true; */
     /* protected $insertID             = 0; */
-    protected $returnType           = 'array';
+    /* protected $returnType           = 'array'; */
     /* protected $useSoftDeletes       = false; */
     /* protected $protectFields        = true; */
-    protected $allowedFields        = ['judul', 'kategori', 'penulis', 'penerbit', 'th_terbit'];
+    protected $allowedFields        = ['id_anggota', 'id_buku', 'tgl_pinjam', 'tgl_kembali', 'telat', 'keterangan', 'denda_telat', 'denda_buku', 'total_denda', 'status_buku'];
 
     // Dates
     /* protected $useTimestamps        = false; */
@@ -41,27 +40,17 @@ class BookModel extends Model
     /* protected $beforeDelete         = []; */
     /* protected $afterDelete          = []; */
 
-    public function getBook($id = false)
+    public function getPinjam()
     {
-        if ($id === false) {
-            return $this->table('buku')->orderBy('judul', 'asc')->get()->getResultArray();
-        } else {
-            return $this->table('buku')->where('id_buku', $id)->get()->getRowArray();
-        }
+        return $this->db->table('sewa')
+            ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
+            ->join('buku', 'buku.id_buku=sewa.id_buku')
+            ->where('status_buku', 'Pinjam')
+            ->get()->getResultArray();
     }
 
-    public function insertBook($data)
+    public function insertPinjam($data)
     {
-        return $this->table('buku')->insert($data);
-    }
-
-    public function updateBook($data, $id)
-    {
-        return $this->db->table('buku')->update($data, ['id_buku' => $id]);
-    }
-
-    public function deleteBook($id)
-    {
-        return $this->table('book')->delete(['id_buku' => $id]);
+        return $this->table('sewa')->insert($data);
     }
 }
