@@ -28,10 +28,10 @@
                         <a class="nav-link" href="/book">Buku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pinjam</a>
+                        <a class="nav-link" href="/borrow">Pinjam</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kembali</a>
+                        <a class="nav-link" href="/return">Kembali</a>
                     </li>
                 </ul>
             </div>
