@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/member">Anggota</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Buku</a>
+                        <a class="nav-link" href="/book">Buku</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pinjam</a>
