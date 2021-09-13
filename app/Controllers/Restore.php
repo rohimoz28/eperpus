@@ -14,7 +14,8 @@ class Restore extends BaseController
 
     public function index()
     {
-        return view('restore/index');
+        $data['sewa'] = $this->kembali->getKembali();
+        return view('restore/index', $data);
     }
 
     public function edit($id)
@@ -68,5 +69,11 @@ class Restore extends BaseController
         if ($update) {
             return redirect()->to('restore/index')->with('success', 'dikembalikan');
         }
+    }
+
+    public function showDetail($id)
+    {
+        $data['detail'] = $this->kembali->getKembali($id);
+        return view('restore/show-detail', $data);
     }
 }

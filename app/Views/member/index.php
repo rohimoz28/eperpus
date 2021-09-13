@@ -14,7 +14,7 @@ Daftar Anggota
     <div class="row">
         <a href="/member/create" class="btn btn-primary">Tambah Anggota Baru</a>
     </div>
-    <?php if ($this->session()->flashdata('success')) : ?>
+    <?php if (session()->getFlashdata('success')) : ?>
         <div class="rows">
             <div class="col-md-7 my-3">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">

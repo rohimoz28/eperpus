@@ -67,4 +67,21 @@ class RentModel extends Model
     {
         return $this->db->table('sewa')->update($data, ['id_sewa' => $id]);
     }
+
+    public function getKembali($id = false)
+    {
+        if ($id === false) {
+            return $this->db->table('sewa')
+                ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
+                ->join('buku', 'buku.id_buku=sewa.id_buku')
+                ->where('status_buku', 'Kembali')
+                ->get()->getResultArray();
+        } else {
+            return $this->db->table('sewa')
+                ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
+                ->join('buku', 'buku.id_buku=sewa.id_buku')
+                ->where('id_sewa', $id)
+                ->get()->getRowArray();
+        }
+    }
 }

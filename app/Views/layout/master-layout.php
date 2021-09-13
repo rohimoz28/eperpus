@@ -31,7 +31,7 @@
                         <a class="nav-link" href="/borrow">Pinjam</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/return">Kembali</a>
+                        <a class="nav-link" href="/restore">Kembali</a>
                     </li>
                 </ul>
             </div>
