@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-10 mt-2">
-            <?php if (session()->getFlashdata('success')) : ?>
+            <?php if (session()->getflashdata('success')) : ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Peminjaman buku berhasil</strong> <?= session()->getFlashdata('success') ?>.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -33,7 +33,7 @@
                             <td><?= $res['nama'] ?></td>
                             <td><?= $res['judul'] ?></td>
                             <td><?= $res['tgl_pinjam'] ?></td>
-                            <td><a href="" class="badge badge-pill badge-primary">Kembali</a></td>
+                            <td><a href="<?= base_url('restore/edit/' . $res['id_sewa']) ?>" class="badge badge-pill badge-success">Kembali</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\BorrowModel;
+// use App\Models\BorrowModel;
+use App\Models\RentModel;
 use App\Models\MemberModel;
 use App\Models\BookModel;
 
@@ -11,7 +12,7 @@ class Borrow extends BaseController
 {
     public function __construct()
     {
-        $this->sewa = new BorrowModel();
+        $this->sewa = new RentModel();
         $this->anggota = new MemberModel();
         $this->buku = new BookModel();
     }
