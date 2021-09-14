@@ -10,6 +10,8 @@ class Member extends BaseController
     public function __construct()
     {
         $this->member = new MemberModel();
+        helper(['form', 'url']);
+        // $this->form_validation = \Config\Services::validation();
     }
 
     public function index()
@@ -20,7 +22,12 @@ class Member extends BaseController
 
     public function create()
     {
-        return view('member/create');
+        $data['validation'] = \Config\Services::validation();
+        // $data = [
+        //     'title' => 'Judul',
+        //     'validation' => \Config\Services::validation()
+        // ];
+        return view('member/create', $data);
     }
 
     public function store()
@@ -30,17 +37,35 @@ class Member extends BaseController
         $tgl_daftar = date('d M Y');
         $alamat = $this->request->getPost('alamat');
 
-        $data = [
-            'nama' => $nama,
-            'jkel' => $jkel,
-            'alamat' => $alamat,
-            'tgl_daftar' => $tgl_daftar
-        ];
+        // Set rules & error massages validasi
+        $input = $this->validate([
+            'nama' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kolom nama anggota wajib diisi'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kolom alamat wajib diisi'
+                ]
+            ]
+        ]);
 
-        $save = $this->member->insertData($data);
+        // Cek jika tidak valid
+        if (!$input) {
+            return redirect()->to('member/create')->withInput();
+        } else {
+            $data = [
+                'nama' => $nama,
+                'jkel' => $jkel,
+                'alamat' => $alamat,
+                'tgl_daftar' => $tgl_daftar
+            ];
 
-        if ($save) {
-            session()->setFlashdata('message', 'ditambahkan');
+            $this->member->insertData($data);
+            session()->setFlashdata('success', 'ditambahkan');
             return redirect()->to(base_url('member'));
         }
     }
