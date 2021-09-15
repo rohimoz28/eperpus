@@ -13,11 +13,17 @@ Tambah Buku
     </div>
     <div class="row">
         <div class="col-md-5 my-3">
+            <?php $validation = \Config\Services::validation(); ?>
             <form action="<?= base_url('/book/store') ?>" method="POST">
-                <?php @csrf_field() ?>
+                <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="judul">Judul Buku</label>
                     <input type="text" class="form-control" name="judul" id="judul">
+                    <?php if ($validation->getError('judul')) : ?>
+                        <div class='text-danger mt-1'>
+                            <?= $error = $validation->getError('judul'); ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group">
                     <label for="kategori">Kategori</label>

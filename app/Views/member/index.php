@@ -12,22 +12,20 @@ Daftar Anggota
         </div>
     </div>
     <div class="row">
-        <a href="/member/create" class="btn btn-primary">Tambah Anggota Baru</a>
+        <div class="col-md-10 mt-3">
+            <a href="/member/create" class="btn btn-primary">Tambah Anggota Baru</a>
+        </div>
     </div>
-    <?php if (session()->getFlashdata('success')) : ?>
-        <div class="rows">
-            <div class="col-md-7 my-3">
+    <div class="row">
+        <div class="col-md-10 my-2">
+            <?php if (session()->getFlashdata('success')) : ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Anggota baru berhasil</strong> <?= session()->getFlashdata('success') ?>
+                    <strong>Data anggota berhasil</strong> <?= session()->getFlashdata('success') ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            </div>
-        </div>
-    <?php endif; ?>
-    <div class="row">
-        <div class="col-md-10 my-2">
+            <?php endif; ?>
             <table class="table">
                 <thead>
                     <tr>

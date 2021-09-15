@@ -10,6 +10,8 @@ class Member extends BaseController
     public function __construct()
     {
         $this->member = new MemberModel();
+        helper(['form', 'url']);
+        session();
     }
 
     public function index()
@@ -30,18 +32,40 @@ class Member extends BaseController
         $tgl_daftar = date('d M Y');
         $alamat = $this->request->getPost('alamat');
 
-        $data = [
-            'nama' => $nama,
-            'jkel' => $jkel,
-            'alamat' => $alamat,
-            'tgl_daftar' => $tgl_daftar
-        ];
+        $isValidated = $this->validate([
+            'nama' => [
+                'rules' => 'required|trim|min_length[3]|max_length[30]',
+                'errors' => [
+                    'required' => 'Kolom nama harus diisi',
+                    'min_length' => 'Tidak boleh kurang dari 3 huruf',
+                    'max_length' => 'Tidak boleh lebih dari 30 huruf'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|trim|min_length[10]',
+                'errors' => [
+                    'required' => 'Kolom alamat harus diisi',
+                    'min_length' => 'Tidak boleh kurang dari 10 huruf'
+                ]
+            ]
+        ]);
 
-        $save = $this->member->insertData($data);
+        if (!$isValidated) {
+            return redirect()->back()->withInput();
+        } else {
+            $data = [
+                'nama' => $nama,
+                'jkel' => $jkel,
+                'alamat' => $alamat,
+                'tgl_daftar' => $tgl_daftar
+            ];
 
-        if ($save) {
-            session()->setFlashdata('message', 'ditambahkan');
-            return redirect()->to(base_url('member'));
+            $save = $this->member->insertData($data);
+
+            if ($save) {
+                session()->setFlashdata('success', 'ditambahkan');
+                return redirect()->to(base_url('member'));
+            }
         }
     }
 
@@ -57,6 +81,28 @@ class Member extends BaseController
         $jkel = $this->request->getPost('jkel');
         $alamat = $this->request->getPost('alamat');
 
+        $isValidated = $this->validate([
+            'nama' => [
+                'rules' => 'required|trim|min_length[3]|max_length[30]',
+                'errors' => [
+                    'required' => 'Kolom nama harus diisi',
+                    'min_length' => 'Tidak boleh kurang dari 3 huruf',
+                    'max_length' => 'Tidak boleh lebih dari 30 huruf'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|trim|min_length[10]',
+                'errors' => [
+                    'required' => 'Kolom alamat harus diisi',
+                    'min_length' => 'Tidak boleh kurang dari 10 huruf'
+                ]
+            ]
+        ]);
+
+        if (!$isValidated) {
+            return redirect()->back()->withInput();
+        }
+
         $data = [
             'nama' => $nama,
             'jkel' => $jkel,
@@ -66,7 +112,7 @@ class Member extends BaseController
         $update = $this->member->updateData($data, $id);
 
         if ($update) {
-            session()->setFlashdata('message', 'diubah');
+            session()->setFlashdata('success', 'diubah');
             return redirect()->to(base_url('member'));
         }
     }
