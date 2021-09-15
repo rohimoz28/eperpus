@@ -1,7 +1,4 @@
 <?= $this->extend('layout/master-layout') ?>
-<?php $this->section('title') ?>
-Daftar Buku
-<?php $this->endSection() ?>
 
 <?php $this->section('content') ?>
 
@@ -14,20 +11,16 @@ Daftar Buku
     <div class="row">
         <a href="/book/create" class="btn btn-primary">Tambah Buku Baru</a>
     </div>
-    <?php if (session()->getFlashdata('success')) : ?>
-        <div class="rows">
-            <div class="col-md-7 my-3">
+    <div class="row">
+        <div class="col-md-10 my-1">
+            <?php if (session()->getFlashdata('success')) : ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Buku baru berhasil</strong> <?= session()->getFlashdata('success') ?>
+                    <strong>Data buku berhasil</strong> <?= session()->getFlashdata('success') ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            </div>
-        </div>
-    <?php endif; ?>
-    <div class="row">
-        <div class="col-md-10 my-2">
+            <?php endif; ?>
             <table class="table">
                 <thead>
                     <tr>

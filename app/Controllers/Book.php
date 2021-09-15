@@ -10,6 +10,7 @@ class Book extends BaseController
     public function __construct()
     {
         $this->book = new BookModel();
+        session();
     }
 
     public function index()
@@ -31,24 +32,49 @@ class Book extends BaseController
         $penerbit = $this->request->getPost('penerbit');
         $th_terbit = $this->request->getPost('th_terbit');
 
-        $data = [
-            'judul' => $judul,
-            'kategori' => $kategori,
-            'penulis' => $penulis,
-            'penerbit' => $penerbit,
-            'th_terbit' => $th_terbit
-        ];
+        $isValidated = $this->validate([
+            'judul' => [
+                'rules' => 'required|trim|min_length[3]',
+                'errors' => [
+                    'required' => 'Kolom judul buku harus diisi',
+                    'min_length' => 'Tidak boleh kurang dari 3 huruf'
+                ]
+            ],
+            'penulis' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kolom penulis harus diisi',
+                ]
+            ]
+        ]);
 
-        $save = $this->book->insertBook($data);
+        if (!$isValidated) {
+            return redirect()->back()->withInput();
+        } else {
+            $data = [
+                'judul' => $judul,
+                'kategori' => $kategori,
+                'penulis' => $penulis,
+                'penerbit' => $penerbit,
+                'th_terbit' => $th_terbit
+            ];
 
-        if ($save) {
-            return redirect()->back()->with('success', 'ditambahkan!');
+            $save = $this->book->insertBook($data);
+
+            if ($save) {
+                session()->setFlashdata('success', 'ditambahkan');
+                return redirect()->to(base_url('book'));
+            }
         }
     }
 
     public function edit($id)
     {
-        $data['book'] = $this->book->getBook($id);
+        // $data['book'] = $this->book->getBook($id);
+        $data = [
+            'book' => $this->book->getBook($id),
+            'validation' => \Config\Services::validation()
+        ];
         return view('book/edit', $data);
     }
 
@@ -59,6 +85,26 @@ class Book extends BaseController
         $penulis = $this->request->getPost('penulis');
         $penerbit = $this->request->getPost('penerbit');
         $th_terbit = $this->request->getPost('th_terbit');
+
+        $isValidated = $this->validate([
+            'judul' => [
+                'rules' => 'required|trim|min_length[3]',
+                'errors' => [
+                    'required' => 'Kolom judul buku harus diisi',
+                    'min_length' => 'Tidak boleh kurang dari 3 huruf'
+                ]
+            ],
+            'penulis' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kolom penulis harus diisi',
+                ]
+            ]
+        ]);
+
+        if (!$isValidated) {
+            return redirect()->back()->withInput();
+        }
 
         $data = [
             'judul' => $judul,
@@ -71,7 +117,8 @@ class Book extends BaseController
         $update = $this->book->updateBook($data, $id);
 
         if ($update) {
-            return redirect()->to('book/index')->with('success', 'diubah!');
+            session()->setFlashdata('success', 'diubah');
+            return redirect()->to(base_url('book'));
         }
     }
 

@@ -14,11 +14,16 @@ Ubah Buku
     <div class="row">
         <div class="col-md-5 my-3">
             <form action="<?= base_url('/book/update/' . $book['id_buku']) ?>" method="POST">
-                <?php @csrf_field() ?>
+                <?= csrf_field() ?>
                 <input type="hidden" value="<?= $book['id_buku'] ?>">
                 <div class="form-group">
                     <label for="judul">Judul Buku</label>
-                    <input type="text" class="form-control" name="judul" id="judul" value="<?= $book['judul'] ?>">
+                    <input type="text" class="form-control <?= ($validation->hasError('judul') ? 'is-invalid' : '') ?>" name="judul" id="judul" value="<?= (old('judul') ? old('judul') : $book['judul']) ?>">
+                    <?php if ($validation->getError('judul')) : ?>
+                        <div id="judul" class="invalid-feedback">
+                            <?= $validation->getError('judul') ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group">
                     <label for="kategori">Kategori</label>
@@ -29,7 +34,12 @@ Ubah Buku
                 </div>
                 <div class="form-group">
                     <label for="penulis">Penulis</label>
-                    <input type="text" class="form-control" name="penulis" id="penulis" value="<?= $book['penulis'] ?>">
+                    <input type="text" class="form-control <?= ($validation->hasError('penulis') ? 'is-invalid' : '') ?>" name="penulis" id="penulis" value="<?= (old('penulis') ? old('penulis') : $book['penulis']) ?>">
+                    <?php if ($validation->getError('penulis')) : ?>
+                        <div id="penulis" class="invalid-feedback">
+                            <?= $validation->getError('penulis') ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group">
                     <label for="penerbit">Penerbit</label>

@@ -1,9 +1,5 @@
 <?php $this->extend('layout/master-layout') ?>
 
-<?php $this->section('title') ?>
-Tambah Buku
-<?php $this->endSection() ?>
-
 <?php $this->section('content') ?>
 <div class="container">
     <div class="row">
@@ -18,10 +14,10 @@ Tambah Buku
                 <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="judul">Judul Buku</label>
-                    <input type="text" class="form-control" name="judul" id="judul">
+                    <input type="text" class="form-control <?= ($validation->hasError('judul') ? 'is-invalid' : '') ?>" name="judul" id="judul" value="<?= old('judul') ?>">
                     <?php if ($validation->getError('judul')) : ?>
-                        <div class='text-danger mt-1'>
-                            <?= $error = $validation->getError('judul'); ?>
+                        <div id="judul" class="invalid-feedback">
+                            <?= $validation->getError('judul') ?>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -34,7 +30,12 @@ Tambah Buku
                 </div>
                 <div class="form-group">
                     <label for="penulis">Penulis</label>
-                    <input type="text" class="form-control" name="penulis" id="penulis">
+                    <input type="text" class="form-control <?= ($validation->hasError('penulis') ? 'is-invalid' : '') ?>"" name=" penulis" id="penulis" value="<?= old('penulis') ?>">
+                    <?php if ($validation->getError('penulis')) : ?>
+                        <div id="penulis" class="invalid-feedback">
+                            <?= $validation->getError('penulis') ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group">
                     <label for="penerbit">Penerbit</label>

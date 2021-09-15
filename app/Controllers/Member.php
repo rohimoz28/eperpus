@@ -11,11 +11,7 @@ class Member extends BaseController
     {
         $this->member = new MemberModel();
         helper(['form', 'url']);
-<<<<<<< HEAD
-        // $this->form_validation = \Config\Services::validation();
-=======
         session();
->>>>>>> kembali
     }
 
     public function index()
@@ -37,14 +33,6 @@ class Member extends BaseController
         $tgl_daftar = date('d M Y');
         $alamat = $this->request->getPost('alamat');
 
-<<<<<<< HEAD
-        // Set rules & error massages validasi
-        $input = $this->_validation();
-
-        // Cek jika tidak valid
-        if (!$input) {
-            session()->setFlashdata('error', 'Cek kembali form anda!');
-=======
         $isValidated = $this->validate([
             'nama' => [
                 'rules' => 'required|trim|min_length[3]|max_length[30]',
@@ -64,7 +52,6 @@ class Member extends BaseController
         ]);
 
         if (!$isValidated) {
->>>>>>> kembali
             return redirect()->back()->withInput();
         } else {
             $data = [
@@ -74,18 +61,12 @@ class Member extends BaseController
                 'tgl_daftar' => $tgl_daftar
             ];
 
-<<<<<<< HEAD
-            $this->member->insertData($data);
-            session()->setFlashdata('success', 'ditambahkan');
-            return redirect()->to(base_url('member'));
-=======
             $save = $this->member->insertData($data);
 
             if ($save) {
                 session()->setFlashdata('success', 'ditambahkan');
                 return redirect()->to(base_url('member'));
             }
->>>>>>> kembali
         }
     }
 
@@ -105,12 +86,6 @@ class Member extends BaseController
         $jkel = $this->request->getPost('jkel');
         $alamat = $this->request->getPost('alamat');
 
-<<<<<<< HEAD
-        $input = $this->_validation();
-
-        if (!$input) {
-            session()->setFlashdata('error', 'Cek kembali form anda!');
-=======
         $isValidated = $this->validate([
             'nama' => [
                 'rules' => 'required|trim|min_length[3]|max_length[30]',
@@ -130,7 +105,6 @@ class Member extends BaseController
         ]);
 
         if (!$isValidated) {
->>>>>>> kembali
             return redirect()->back()->withInput();
         }
 
@@ -140,17 +114,12 @@ class Member extends BaseController
             'alamat' => $alamat,
         ];
 
-        $this->member->updateData($data, $id);
+        $update = $this->member->updateData($data, $id);
 
-<<<<<<< HEAD
-        session()->setFlashdata('success', 'diubah!');
-        return redirect()->to(base_url('member'));
-=======
         if ($update) {
             session()->setFlashdata('success', 'diubah');
             return redirect()->to(base_url('member'));
         }
->>>>>>> kembali
     }
 
     public function delete($id)
