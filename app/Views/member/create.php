@@ -9,13 +9,18 @@
     </div>
     <div class="row">
         <div class="col-md-5 mt-2">
+            <?php if (session()->getFlashdata('error')) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
             <form action="<?= base_url('/member/store') ?>" method="POST">
                 <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="nama">Nama anggota</label>
-                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= old('nama') ?>">
+                    <input type="text" class="form-control <?= ($validation->hasError('nama') ? 'is-invalid' : '') ?>" id="nama" name="nama" value="<?= old('nama') ?>">
                     <?php if ($validation->hasError('nama')) : ?>
-                        <div id="validationServer03Feedback" class="invalid-feedback">
+                        <div id="nama" class="invalid-feedback">
                             <?= $validation->getError('nama') ?>
                         </div>
                     <?php endif; ?>

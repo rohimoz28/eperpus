@@ -23,10 +23,6 @@ class Member extends BaseController
     public function create()
     {
         $data['validation'] = \Config\Services::validation();
-        // $data = [
-        //     'title' => 'Judul',
-        //     'validation' => \Config\Services::validation()
-        // ];
         return view('member/create', $data);
     }
 
@@ -38,24 +34,12 @@ class Member extends BaseController
         $alamat = $this->request->getPost('alamat');
 
         // Set rules & error massages validasi
-        $input = $this->validate([
-            'nama' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kolom nama anggota wajib diisi'
-                ]
-            ],
-            'alamat' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kolom alamat wajib diisi'
-                ]
-            ]
-        ]);
+        $input = $this->_validation();
 
         // Cek jika tidak valid
         if (!$input) {
-            return redirect()->to('member/create')->withInput();
+            session()->setFlashdata('error', 'Cek kembali form anda!');
+            return redirect()->back()->withInput();
         } else {
             $data = [
                 'nama' => $nama,
@@ -72,7 +56,11 @@ class Member extends BaseController
 
     public function edit($id)
     {
-        $data['member'] = $this->member->getMember($id);
+        $data = [
+            'member' => $this->member->getMember($id),
+            'validation' => \Config\Services::validation()
+        ];
+
         return view('member/edit', $data);
     }
 
@@ -82,18 +70,23 @@ class Member extends BaseController
         $jkel = $this->request->getPost('jkel');
         $alamat = $this->request->getPost('alamat');
 
+        $input = $this->_validation();
+
+        if (!$input) {
+            session()->setFlashdata('error', 'Cek kembali form anda!');
+            return redirect()->back()->withInput();
+        }
+
         $data = [
             'nama' => $nama,
             'jkel' => $jkel,
             'alamat' => $alamat,
         ];
 
-        $update = $this->member->updateData($data, $id);
+        $this->member->updateData($data, $id);
 
-        if ($update) {
-            session()->setFlashdata('message', 'diubah');
-            return redirect()->to(base_url('member'));
-        }
+        session()->setFlashdata('success', 'diubah!');
+        return redirect()->to(base_url('member'));
     }
 
     public function delete($id)
@@ -104,5 +97,23 @@ class Member extends BaseController
             session()->setFlashdata('message', 'dihapus');
             return redirect()->to(base_url('member'));
         }
+    }
+
+    protected function _validation()
+    {
+        $input = $this->validate([
+            'nama' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kolom nama anggota wajib diisi'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kolom alamat wajib diisi'
+                ]
+            ]
+        ]);
     }
 }
