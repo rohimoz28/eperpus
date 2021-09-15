@@ -8,18 +8,28 @@
         </div>
     </div>
     <div class="row">
+<<<<<<< HEAD
         <div class="col-md-5 mt-2">
             <?php if (session()->getFlashdata('error')) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= session()->getFlashdata('error') ?>
                 </div>
             <?php endif; ?>
+=======
+        <div class="col-md-5 my-3">
+            <?php $validation = \Config\Services::validation(); ?>
+>>>>>>> kembali
             <form action="<?= base_url('/member/store') ?>" method="POST">
                 <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="nama">Nama anggota</label>
+<<<<<<< HEAD
                     <input type="text" class="form-control <?= ($validation->hasError('nama') ? 'is-invalid' : '') ?>" id="nama" name="nama" value="<?= old('nama') ?>">
                     <?php if ($validation->hasError('nama')) : ?>
+=======
+                    <input type="text" class="form-control <?= ($validation->hasError('nama') ? 'is-invalid' : '') ?>" name="nama" id="nama" value="<?= old('nama') ?>">
+                    <?php if ($validation->getError('nama')) : ?>
+>>>>>>> kembali
                         <div id="nama" class="invalid-feedback">
                             <?= $validation->getError('nama') ?>
                         </div>
@@ -34,9 +44,15 @@
                 </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
+<<<<<<< HEAD
                     <textarea class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : '' ?>" name="alamat" id="alamat" rows="3"><?= old('alamat') ?></textarea>
                     <?php if ($validation->hasError('alamat')) : ?>
                         <div id="validationServer03Feedback" class="invalid-feedback">
+=======
+                    <textarea class="form-control <?= ($validation->hasError('alamat') ? 'is-invalid' : '') ?>" name="alamat" id="alamat" rows="3"><?= old('alamat') ?></textarea>
+                    <?php if ($validation->getError('alamat')) : ?>
+                        <div id="alamat" class="invalid-feedback">
+>>>>>>> kembali
                             <?= $validation->getError('alamat') ?>
                         </div>
                     <?php endif; ?>
