@@ -1,9 +1,5 @@
 <?= $this->extend('layout/master-layout') ?>
 
-<?php $this->section('title') ?>
-Daftar Anggota
-<?php $this->endSection() ?>
-
 <?php $this->section('content') ?>
 <div class="container">
     <div class="row">
@@ -36,9 +32,10 @@ Daftar Anggota
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($members as $no => $member) : ?>
+                    <?php $i = 1 + (5 * ($currentPage - 1)) ?>
+                    <?php foreach ($members as $member) : ?>
                         <tr>
-                            <th scope="row"><?= $no + 1 ?></th>
+                            <th scope="row"><?= $i++ ?></th>
                             <td><?= $member['nama'] ?></td>
                             <td><?= $member['alamat'] ?></td>
                             <td>
@@ -49,6 +46,13 @@ Daftar Anggota
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <?= $pager->links('pager', 'member_pager') ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mt-3">
-            <h2 class="text-center">Daftar Buku Kembali</h2>
+            <h2 class="text-center">Pengembalian Buku</h2>
         </div>
     </div>
     <div class="row">

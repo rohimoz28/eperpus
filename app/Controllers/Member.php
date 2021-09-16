@@ -16,7 +16,14 @@ class Member extends BaseController
 
     public function index()
     {
-        $data['members'] = $this->member->getMember();
+        /* $data['members'] = $this->member->getMember(); */
+        $currentPage = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
+
+        $data = [
+            'members' => $this->member->paginate(5, 'pager'),
+            'pager' => $this->member->pager,
+            'currentPage' => $currentPage,
+        ];
         echo view('member/index', $data);
     }
 
@@ -134,7 +141,7 @@ class Member extends BaseController
 
     protected function _validation()
     {
-        $input = $this->validate([
+        $this->validate([
             'nama' => [
                 'rules' => 'required|trim',
                 'errors' => [

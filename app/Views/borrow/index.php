@@ -4,7 +4,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 mt-3"><a href="/borrow/create" class="btn btn-primary">Tambah Pinjaman Buku</a></div>
+        <div class="col-md-10 mt-3">
+            <h2 class="text-center">Peminjaman Buku</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 mt-2"><a href="/borrow/create" class="btn btn-primary">Tambah Pinjaman Buku</a></div>
     </div>
     <div class="row">
         <div class="col-md-10 mt-2">
