@@ -15,7 +15,15 @@ class Book extends BaseController
 
     public function index()
     {
-        $data['books'] = $this->book->getBook();
+        /* $data['books'] = $this->book->getBook(); */
+        $currentPage = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
+
+        $data = [
+            'books' => $this->book->paginate(5, 'pager'),
+            'pager' => $this->book->pager,
+            'currentPage' => $currentPage,
+        ];
+
         echo view('book/index', $data);
     }
 

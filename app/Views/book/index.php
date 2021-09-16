@@ -32,9 +32,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($books as $no => $book) : ?>
+                    <?php $i = 1 + (5 * ($currentPage - 1)) ?>
+                    <?php foreach ($books as $book) : ?>
                         <tr>
-                            <th scope="row"><?= $no + 1 ?></th>
+                            <th scope="row"><?= $i++ ?></th>
                             <td><?= $book['judul'] ?></td>
                             <td><?= $book['kategori'] ?></td>
                             <td><?= $book['penulis'] ?></td>
@@ -46,6 +47,13 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <?= $pager->links('pager', 'member_pager') ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
