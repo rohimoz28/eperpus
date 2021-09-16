@@ -23,6 +23,7 @@ class Member extends BaseController
             'members' => $this->member->paginate(5, 'pager'),
             'pager' => $this->member->pager,
             'currentPage' => $currentPage,
+
         ];
         echo view('member/index', $data);
     }

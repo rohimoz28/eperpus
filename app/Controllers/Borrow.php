@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-// use App\Models\BorrowModel;
+
 use App\Models\RentModel;
 use App\Models\MemberModel;
 use App\Models\BookModel;
@@ -15,11 +15,20 @@ class Borrow extends BaseController
         $this->sewa = new RentModel();
         $this->anggota = new MemberModel();
         $this->buku = new BookModel();
+        helper(['form', 'url']);
     }
 
     public function index()
     {
-        $data['pinjam'] = $this->sewa->getPinjam();
+        $pager = 5;
+
+        $data['pinjam'] = $this->sewa->join('anggota', 'anggota.id_anggota = sewa.id_anggota')
+            ->join('buku', 'buku.id_buku = sewa.id_buku')
+            ->paginate($pager, 'pager');
+        $data['pager'] = $this->sewa->pager;
+        $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
+
+        /* $data['pinjam'] = $this->sewa->getPinjam(); */
         return view('borrow/index', $data);
     }
 

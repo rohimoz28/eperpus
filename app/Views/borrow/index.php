@@ -32,9 +32,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($pinjam as $no => $res) : ?>
+                    <?php $i = 1 + (5 * ($currentPage - 1)) ?>
+                    <?php foreach ($pinjam as $res) : ?>
                         <tr>
-                            <th scope="row"><?= $no + 1 ?></th>
+                            <th scope="row"><?= $i++ ?></th>
                             <td><?= $res['nama'] ?></td>
                             <td><?= $res['judul'] ?></td>
                             <td><?= $res['tgl_pinjam'] ?></td>
@@ -43,6 +44,13 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <?= $pager->links('pager', 'default_pager') ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

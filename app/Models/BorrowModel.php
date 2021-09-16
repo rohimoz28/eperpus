@@ -42,11 +42,12 @@ class BorrowModel extends Model
 
     public function getPinjam()
     {
-        return $this->db->table('sewa')
+        return $this->table('sewa')
             ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
             ->join('buku', 'buku.id_buku=sewa.id_buku')
             ->where('status_buku', 'Pinjam')
             ->get()->getResultArray();
+        /* ->paginate($perPage, $page); */
     }
 
     public function insertPinjam($data)

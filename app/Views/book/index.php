@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="d-flex justify-content-end">
-                        <?= $pager->links('pager', 'member_pager') ?>
+                        <?= $pager->links('pager', 'default_pager') ?>
                     </div>
                 </div>
             </div>
