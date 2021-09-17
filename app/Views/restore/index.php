@@ -10,6 +10,14 @@
     </div>
     <div class="row">
         <div class="col-md-10 mt-2">
+            <?php if (session()->getflashdata('success')) : ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Buku berhasil</strong> <?= session()->getFlashdata('success') ?>.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -36,6 +44,13 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <?= $pager->links('pager', 'default_pager') ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -14,7 +14,16 @@ class Restore extends BaseController
 
     public function index()
     {
-        $data['sewa'] = $this->kembali->getKembali();
+        $pager = 5;
+        $data['sewa'] = $this->kembali->join('anggota', 'anggota.id_anggota = sewa.id_anggota')
+            ->join('buku', 'buku.id_buku = sewa.id_buku')
+            ->where('status_buku', 'Kembali')
+            ->paginate($pager, 'pager');
+
+        /* $data['sewa'] = $this->kembali->getKembali()->paginate(5, 'pager'); */
+        $data['pager'] = $this->kembali->pager;
+        $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
+
         return view('restore/index', $data);
     }
 

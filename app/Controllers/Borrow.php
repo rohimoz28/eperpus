@@ -24,6 +24,7 @@ class Borrow extends BaseController
 
         $data['pinjam'] = $this->sewa->join('anggota', 'anggota.id_anggota = sewa.id_anggota')
             ->join('buku', 'buku.id_buku = sewa.id_buku')
+            ->where('status_buku', 'Pinjam')
             ->paginate($pager, 'pager');
         $data['pager'] = $this->sewa->pager;
         $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
