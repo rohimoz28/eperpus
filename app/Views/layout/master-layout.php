@@ -20,7 +20,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/member">Anggota</a>
                     </li>
@@ -34,6 +34,11 @@
                         <a class="nav-link" href="/restore">Kembali</a>
                     </li>
                 </ul>
+                <div class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                </div>
             </div>
         </nav>
         <!-- Start Content Page -->
