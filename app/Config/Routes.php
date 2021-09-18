@@ -17,7 +17,8 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+/* $routes->setDefaultController('Home'); */
+$routes->setDefaultController('Auth');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -31,12 +32,21 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+/* $routes->get('/', 'Home::index'); */
 // Route Member
-$routes->get('/member', 'Member::index');
-$routes->get('/member/update/(:segment)', 'Member::update/$1');
+/* $routes->get('/member', 'Member::index'); */
+/* $routes->get('/member', 'Member::index', ['filter' => 'auth']); */
 // Route Book
-$routes->get('/book', 'Book::index');
+$routes->group('', ['filter' => 'auth'], function ($routes) {
+    // Member
+    $routes->get('member', 'Member::index');
+    $routes->get('member/update/(:segment)', 'Member::update/$1');
+    $routes->get('member/create', 'Member::create', ['filter' => 'auth']);
+    // Book
+    $routes->get('book', 'Book::index', ['filter' => 'auth']);
+    // Borrow
+    // Restore
+});
 
 /*
  * --------------------------------------------------------------------
