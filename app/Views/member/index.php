@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-md-10 mt-3">
-            <a href="/member/create" class="btn btn-primary">Tambah Anggota Baru</a>
+            <a href="<?= base_url('member/create') ?>" class="btn btn-primary">Tambah Anggota Baru</a>
         </div>
     </div>
     <div class="row">

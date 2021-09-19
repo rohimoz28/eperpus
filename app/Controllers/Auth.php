@@ -7,13 +7,13 @@ use App\Models\UserModel;
 
 class Auth extends BaseController
 {
-    public function index()
+    public function login()
     {
         helper('form');
         return view('auth/index');
     }
 
-    public function login()
+    public function loginCheck()
     {
         $session = session();
         $this->user = new UserModel();
@@ -36,12 +36,12 @@ class Auth extends BaseController
                 $session->set($ses_data);
                 return redirect()->to('home/index');
             } else {
-                $session->setFlashdata('error', 'Password salah');
-                return redirect()->to('auth/index');
+                $session->setFlashdata('error', 'Password yang anda masukkan salah!');
+                return redirect()->to('auth/login');
             }
         } else {
-            $session->setFlashdata('error', 'Email salah!');
-            return redirect()->to('auth/index');
+            $session->setFlashdata('error', 'Username yang anda masukkan salah!');
+            return redirect()->to('auth/login');
         }
     }
 
@@ -49,6 +49,6 @@ class Auth extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('auth/index');
+        return redirect()->to('auth/login');
     }
 }

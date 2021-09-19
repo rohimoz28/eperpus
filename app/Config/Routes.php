@@ -19,7 +19,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 $routes->setDefaultNamespace('App\Controllers');
 /* $routes->setDefaultController('Home'); */
 $routes->setDefaultController('Auth');
-$routes->setDefaultMethod('index');
+$routes->setDefaultMethod('login');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
@@ -40,12 +40,25 @@ $routes->setAutoRoute(true);
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     // Member
     $routes->get('member', 'Member::index');
-    $routes->get('member/update/(:segment)', 'Member::update/$1');
-    $routes->get('member/create', 'Member::create', ['filter' => 'auth']);
+    $routes->get('member/create', 'Member::create');
+    $routes->post('member/store', 'Member::store');
+    $routes->get('member/edit/(:num)', 'Member::edit/$1');
+    $routes->put('member/update/(:num)', 'Member::update/$1');
+    /* $routes->patch('member/update/(:num)', 'Member::update/$1'); */
+    $routes->get('member/delete/(:num)', 'Member::delete/$1');
+
     // Book
-    $routes->get('book', 'Book::index', ['filter' => 'auth']);
+    $routes->get('book', 'Book::index');
+    $routes->get('book/create', 'Book::create');
+    $routes->post('book/store', 'Book::store');
+    $routes->get('book/edit/(:segment)', 'Book::edit/$1');
+    $routes->put('book/update/(:segment)', 'Book::update/$1');
+    $routes->get('book/delete/(:num)', 'Book::delete/$1');
     // Borrow
+    $routes->get('borrow', 'Borrow::index');
+    $routes->get('borrow/create', 'Borrow::create');
     // Restore
+    $routes->get('restore', 'Restore::index');
 });
 
 /*

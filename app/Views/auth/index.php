@@ -27,10 +27,22 @@
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h4>Login Form</h4>
-                            </div>
 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <?php if (session()->getFlashdata('error')) : ?>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <?= session()->getFlashdata('error') ?>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                             <div class="card-body">
-                                <form method="POST" action="<?= base_url('auth/login') ?>">
+                                <form method="POST" action="<?= base_url('auth/loginCheck') ?>">
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
