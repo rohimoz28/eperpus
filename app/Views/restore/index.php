@@ -33,12 +33,12 @@
                     <?php foreach ($sewa as $no => $res) : ?>
                         <tr>
                             <th scope="row"><?= $no + 1 ?></th>
-                            <td><?= $res['nama'] ?></td>
-                            <td><?= $res['judul'] ?></td>
-                            <td><?= $res['keterangan'] ?></td>
-                            <td><?= $res['total_denda'] ?></td>
+                            <td><?= $res['name'] ?></td>
+                            <td><?= $res['book_title'] ?></td>
+                            <td><?= $res['description'] ?></td>
+                            <td><?= $res['sum_fine'] ?></td>
                             <td>
-                                <a href="<?= base_url('restore/showDetail/' . $res['id_sewa']) ?>" class="badge badge-pill badge-success">Detail</a>
+                                <a href="<?= base_url('restore/showDetail/' . $res['rent_id']) ?>" class="badge badge-pill badge-success">Detail</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

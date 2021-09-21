@@ -36,11 +36,11 @@
                     <?php foreach ($members as $member) : ?>
                         <tr>
                             <th scope="row"><?= $i++ ?></th>
-                            <td><?= $member['nama'] ?></td>
-                            <td><?= $member['alamat'] ?></td>
+                            <td><?= $member['name'] ?></td>
+                            <td><?= $member['address'] ?></td>
                             <td>
-                                <a href="<?= base_url('member/edit/' . $member['id_anggota']) ?>" class="badge badge-pill badge-warning">Ubah</a>
-                                <a onClick="return confirm('Hapus anggota ini...?')" href="<?= base_url('member/delete/' . $member['id_anggota']) ?>" class="badge badge-pill badge-danger">Hapus</a>
+                                <a href="<?= base_url('member/edit/' . $member['member_id']) ?>" class="badge badge-pill badge-warning">Ubah</a>
+                                <a onClick="return confirm('Hapus anggota ini...?')" href="<?= base_url('member/delete/' . $member['member_id']) ?>" class="badge badge-pill badge-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

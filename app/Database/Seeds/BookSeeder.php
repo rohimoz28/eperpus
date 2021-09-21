@@ -21,7 +21,7 @@ class BookSeeder extends Seeder
             [
                 'book_title' => 'One Piece',
                 'book_category' => 'Komik',
-                'book_writer' => 'Oda Nobunaga',
+                'book_writer' => 'Eiichiro Oda',
                 'book_publisher' => 'Shonen Jump',
                 'book_date_publish' => '1996',
                 'created_at' => Time::now()

@@ -60,11 +60,11 @@ class Book extends BaseController
             return redirect()->back()->withInput();
         } else {
             $data = [
-                'judul' => $judul,
-                'kategori' => $kategori,
-                'penulis' => $penulis,
-                'penerbit' => $penerbit,
-                'th_terbit' => $th_terbit
+                'book_title' => $judul,
+                'book_category' => $kategori,
+                'book_writer' => $penulis,
+                'book_publisher' => $penerbit,
+                'book_date_publish' => $th_terbit
             ];
 
             $save = $this->book->insertBook($data);
@@ -115,11 +115,11 @@ class Book extends BaseController
         }
 
         $data = [
-            'judul' => $judul,
-            'kategori' => $kategori,
-            'penulis' => $penulis,
-            'penerbit' => $penerbit,
-            'th_terbit' => $th_terbit
+            'book_title' => $judul,
+            'book_category' => $kategori,
+            'book_writer' => $penulis,
+            'book_publisher' => $penerbit,
+            'book_date_publish' => $th_terbit
         ];
 
         $update = $this->book->updateBook($data, $id);

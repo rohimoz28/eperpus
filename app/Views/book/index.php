@@ -36,12 +36,12 @@
                     <?php foreach ($books as $book) : ?>
                         <tr>
                             <th scope="row"><?= $i++ ?></th>
-                            <td><?= $book['judul'] ?></td>
-                            <td><?= $book['kategori'] ?></td>
-                            <td><?= $book['penulis'] ?></td>
+                            <td><?= $book['book_title'] ?></td>
+                            <td><?= $book['book_category'] ?></td>
+                            <td><?= $book['book_writer'] ?></td>
                             <td>
-                                <a href="<?= base_url('book/edit/' . $book['id_buku']) ?>" class="badge badge-pill badge-warning">Ubah</a>
-                                <a onClick="return confirm('Hapus anggota ini...?')" href="<?= base_url('book/delete/' . $book['id_buku']) ?>" class="badge badge-pill badge-danger">Hapus</a>
+                                <a href="<?= base_url('book/edit/' . $book['book_id']) ?>" class="badge badge-pill badge-warning">Ubah</a>
+                                <a onClick="return confirm('Hapus anggota ini...?')" href="<?= base_url('book/delete/' . $book['book_id']) ?>" class="badge badge-pill badge-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

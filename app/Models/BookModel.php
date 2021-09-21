@@ -7,61 +7,36 @@ use CodeIgniter\Model;
 class BookModel extends Model
 {
     protected $DBGroup              = 'default';
-    /* protected $table                = 'books'; */
-    protected $table                = 'buku';
-    protected $primaryKey           = 'id_buku';
+    protected $table                = 'books';
+    protected $primaryKey           = 'book_id';
     /* protected $useAutoIncrement     = true; */
     /* protected $insertID             = 0; */
     protected $returnType           = 'array';
     /* protected $useSoftDeletes       = false; */
     /* protected $protectFields        = true; */
-    protected $allowedFields        = ['judul', 'kategori', 'penulis', 'penerbit', 'th_terbit'];
-
-    // Dates
-    /* protected $useTimestamps        = false; */
-    /* protected $dateFormat           = 'datetime'; */
-    /* protected $createdField         = 'created_at'; */
-    /* protected $updatedField         = 'updated_at'; */
-    /* protected $deletedField         = 'deleted_at'; */
-
-    // Validation
-    /* protected $validationRules      = []; */
-    /* protected $validationMessages   = []; */
-    /* protected $skipValidation       = false; */
-    /* protected $cleanValidationRules = true; */
-
-    // Callbacks
-    /* protected $allowCallbacks       = true; */
-    /* protected $beforeInsert         = []; */
-    /* protected $afterInsert          = []; */
-    /* protected $beforeUpdate         = []; */
-    /* protected $afterUpdate          = []; */
-    /* protected $beforeFind           = []; */
-    /* protected $afterFind            = []; */
-    /* protected $beforeDelete         = []; */
-    /* protected $afterDelete          = []; */
+    protected $allowedFields        = ['book_title', 'book_category', 'book_writer', 'book_publisher', 'book_date_publish'];
 
     public function getBook($id = false)
     {
         if ($id === false) {
-            return $this->table('buku')->orderBy('judul', 'asc')->get()->getResultArray();
+            return $this->table('books')->orderBy('book_title', 'asc')->get()->getResultArray();
         } else {
-            return $this->table('buku')->where('id_buku', $id)->get()->getRowArray();
+            return $this->table('books')->where('book_id', $id)->get()->getRowArray();
         }
     }
 
     public function insertBook($data)
     {
-        return $this->table('buku')->insert($data);
+        return $this->table('books')->insert($data);
     }
 
     public function updateBook($data, $id)
     {
-        return $this->db->table('buku')->update($data, ['id_buku' => $id]);
+        return $this->db->table('books')->update($data, ['book_id' => $id]);
     }
 
     public function deleteBook($id)
     {
-        return $this->table('book')->delete(['id_buku' => $id]);
+        return $this->table('books')->delete(['book_id' => $id]);
     }
 }

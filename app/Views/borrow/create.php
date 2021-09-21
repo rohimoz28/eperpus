@@ -15,7 +15,7 @@
                     <label for="anggota">Nama Anggota</label>
                     <select class="form-control" name="anggota" id="anggota">
                         <?php foreach ($members as $member) : ?>
-                            <option value="<?= $member['id_anggota'] ?>"><?= $member['nama'] ?></option>
+                            <option value="<?= $member['member_id'] ?>"><?= $member['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -23,7 +23,7 @@
                     <label for="buku">Judul Buku</label>
                     <select class="form-control" name="buku" id="buku">
                         <?php foreach ($books as $book) : ?>
-                            <option value="<?= $book['id_buku'] ?>"><?= $book['judul'] ?></option>
+                            <option value="<?= $book['book_id'] ?>"><?= $book['book_title'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

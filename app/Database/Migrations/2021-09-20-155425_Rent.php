@@ -15,12 +15,12 @@ class Rent extends Migration
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
             ],
-            'id_member' => [
+            'member_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => TRUE,
             ],
-            'id_book'          => [
+            'book_id'          => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
@@ -62,8 +62,8 @@ class Rent extends Migration
         ]);
 
         $this->forge->addKey('rent_id', true);
-        $this->forge->addForeignKey('id_member', 'members', 'member_id');
-        /* $this->forge->addForeignKey('id_book', 'books', 'book_id'); */
+        // $this->forge->addForeignKey('id_member', 'members', 'member_id');
+        // $this->forge->addForeignKey('id_book', 'books', 'book_id');
         $this->forge->createTable('rents');
     }
 

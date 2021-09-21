@@ -22,9 +22,9 @@ class Borrow extends BaseController
     {
         $pager = 5;
 
-        $data['pinjam'] = $this->sewa->join('anggota', 'anggota.id_anggota = sewa.id_anggota')
-            ->join('buku', 'buku.id_buku = sewa.id_buku')
-            ->where('status_buku', 'Pinjam')
+        $data['pinjam'] = $this->sewa->join('members', 'members.member_id = rents.member_id')
+            ->join('books', 'books.book_id = rents.book_id')
+            ->where('book_status', 'Pinjam')
             ->paginate($pager, 'pager');
         $data['pager'] = $this->sewa->pager;
         $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
@@ -47,19 +47,20 @@ class Borrow extends BaseController
         $tgl_pinjam = date('Y-M-d');
 
         $data = [
-            'id_anggota' => $id_anggota,
-            'id_buku' => $id_buku,
-            'tgl_pinjam' => $tgl_pinjam,
-            'tgl_kembali' => '',
-            'telat' => 0,
-            'keterangan' => '',
-            'denda_telat' => 0,
-            'denda_buku' => 0,
-            'total_denda' => 0,
-            'status_buku' => 'Pinjam'
+            'member_id' => $id_anggota,
+            'book_id' => $id_buku,
+            'date_borrow' => $tgl_pinjam,
+            'date_return' => '',
+            'late' => 0,
+            'description' => '',
+            'late_fine' => 0,
+            'late_book' => 0,
+            'sum_fine' => 0,
+            'book_status' => 'Pinjam'
         ];
-
+        // dd($data);
         $store = $this->sewa->insertPinjam($data);
+        // $store = $this->sewa->insert($data);
 
         if ($store) {
             return redirect()->to('borrow/index')->with('success', 'ditambahkan');

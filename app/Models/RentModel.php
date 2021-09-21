@@ -7,80 +7,56 @@ use CodeIgniter\Model;
 class RentModel extends Model
 {
     protected $DBGroup              = 'default';
-    protected $table                = 'sewa';
-    protected $primaryKey           = 'id_sewa';
+    protected $table                = 'rents';
+    protected $primaryKey           = 'rent_id';
     /* protected $useAutoIncrement     = true; */
     /* protected $insertID             = 0; */
     /* protected $returnType           = 'array'; */
     /* protected $useSoftDeletes       = false; */
     /* protected $protectFields        = true; */
-    protected $allowedFields        = ['id_anggota', 'id_buku', 'tgl_pinjam', 'tgl_kembali', 'telat', 'keterangan', 'denda_telat', 'denda_buku', 'total_denda', 'status_buku'];
+    protected $allowedFields        = ['member_id', 'book_id', 'date_borrow', 'date_return', 'late', 'description', 'late_fine', 'book_fine', 'sum_fine', 'book_status'];
 
-    // Dates
-    /* protected $useTimestamps        = false; */
-    /* protected $dateFormat           = 'datetime'; */
-    /* protected $createdField         = 'created_at'; */
-    /* protected $updatedField         = 'updated_at'; */
-    /* protected $deletedField         = 'deleted_at'; */
-
-    // Validation
-    /* protected $validationRules      = []; */
-    /* protected $validationMessages   = []; */
-    /* protected $skipValidation       = false; */
-    /* protected $cleanValidationRules = true; */
-
-    // Callbacks
-    /* protected $allowCallbacks       = true; */
-    /* protected $beforeInsert         = []; */
-    /* protected $afterInsert          = []; */
-    /* protected $beforeUpdate         = []; */
-    /* protected $afterUpdate          = []; */
-    /* protected $beforeFind           = []; */
-    /* protected $afterFind            = []; */
-    /* protected $beforeDelete         = []; */
-    /* protected $afterDelete          = []; */
-
-    public function getPinjam()
-    {
-        return $this->db->table('sewa')
-            ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
-            ->join('buku', 'buku.id_buku=sewa.id_buku')
-            ->where('status_buku', 'Pinjam')
-            ->get()->getResultArray();
-    }
+    // public function getPinjam()
+    // {
+    //     return $this->db->table('rents')
+    //         ->join('members', 'members.member_id=rents.id_member')
+    //         ->join('books', 'books.book_id=rents.id_book')
+    //         ->where('book_status', 'Pinjam')
+    //         ->get()->getResultArray();
+    // }
 
     public function insertPinjam($data)
     {
-        return $this->table('sewa')->insert($data);
+        return $this->table('rents')->insert($data);
     }
 
     public function editKembali($id)
     {
-        return $this->db->table('sewa')
-            ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
-            ->join('buku', 'buku.id_buku=sewa.id_buku')
-            ->where('id_sewa', $id)
+        return $this->db->table('rents')
+            ->join('members', 'members.member_id = rents.member_id')
+            ->join('books', 'books.book_id = rents.book_id')
+            ->where('rent_id', $id)
             ->get()->getRowArray();
     }
 
     public function updateKembali($data, $id)
     {
-        return $this->db->table('sewa')->update($data, ['id_sewa' => $id]);
+        return $this->db->table('rents')->update($data, ['rent_id' => $id]);
     }
 
     public function getKembali($id = false)
     {
         if ($id === false) {
-            return $this->db->table('sewa')
-                ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
-                ->join('buku', 'buku.id_buku=sewa.id_buku')
-                ->where('status_buku', 'Kembali')
+            return $this->db->table('rents')
+                ->join('members', 'members.member_id=rents.member_id')
+                ->join('books', 'books.book_id=rents.book_id')
+                ->where('book_status', 'Kembali')
                 ->get()->getResultArray();
         } else {
-            return $this->db->table('sewa')
-                ->join('anggota', 'anggota.id_anggota=sewa.id_anggota')
-                ->join('buku', 'buku.id_buku=sewa.id_buku')
-                ->where('id_sewa', $id)
+            return $this->db->table('rents')
+                ->join('members', 'members.member_id=rents.member_id')
+                ->join('books', 'books.book_id=rents.book_id')
+                ->where('rent_id', $id)
                 ->get()->getRowArray();
         }
     }

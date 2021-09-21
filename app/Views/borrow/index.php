@@ -36,10 +36,10 @@
                     <?php foreach ($pinjam as $res) : ?>
                         <tr>
                             <th scope="row"><?= $i++ ?></th>
-                            <td><?= $res['nama'] ?></td>
-                            <td><?= $res['judul'] ?></td>
-                            <td><?= $res['tgl_pinjam'] ?></td>
-                            <td><a href="<?= base_url('restore/edit/' . $res['id_sewa']) ?>" class="badge badge-pill badge-success">Kembali</a></td>
+                            <td><?= $res['name'] ?></td>
+                            <td><?= $res['book_title'] ?></td>
+                            <td><?= $res['book_date_publish'] ?></td>
+                            <td><a href="<?= base_url('restore/edit/' . $res['rent_id']) ?>" class="badge badge-pill badge-success">Pengembalian</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

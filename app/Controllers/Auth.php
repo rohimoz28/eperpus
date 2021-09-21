@@ -28,7 +28,7 @@ class Auth extends BaseController
             // Cek password
             if ($verify_pass == $pass) {
                 $ses_data = [
-                    'id_user' => $user['id_user'],
+                    'user_id' => $user['user_id'],
                     'username' => $user['username'],
                     'logged_in' => TRUE
                 ];

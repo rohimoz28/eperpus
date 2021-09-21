@@ -15,9 +15,9 @@ class Restore extends BaseController
     public function index()
     {
         $pager = 5;
-        $data['sewa'] = $this->kembali->join('anggota', 'anggota.id_anggota = sewa.id_anggota')
-            ->join('buku', 'buku.id_buku = sewa.id_buku')
-            ->where('status_buku', 'Kembali')
+        $data['sewa'] = $this->kembali->join('members', 'members.member_id = rents.member_id')
+            ->join('books', 'books.book_id = rents.book_id')
+            ->where('book_status', 'Kembali')
             ->paginate($pager, 'pager');
 
         /* $data['sewa'] = $this->kembali->getKembali()->paginate(5, 'pager'); */
@@ -43,6 +43,7 @@ class Restore extends BaseController
         $hari_telat = floor($hitung_telat / (60 * 60 * 24));
         // Hitung Denda Hari Telat
         $denda_telat = 1000 * $hari_telat;
+        // dd($tgl_pinjam);
         // Hitung Denda Buku
         $keterangan_buku = $this->request->getPost('keterangan_buku');
         switch ($keterangan_buku) {
@@ -64,14 +65,16 @@ class Restore extends BaseController
         $status_buku = 'Kembali';
 
         $data = [
-            'tgl_kembali' => $tgl_kembali,
-            'telat' => $hari_telat,
-            'keterangan' => $keterangan_buku,
-            'denda_telat' => $denda_telat,
-            'denda_buku' => $denda_buku,
-            'total_denda' => $total_denda,
-            'status_buku' => $status_buku
+            'date_return' => $tgl_kembali,
+            'late' => $hari_telat,
+            'description' => $keterangan_buku,
+            'late_fine' => $denda_telat,
+            'book_fine' => $denda_buku,
+            'sum_fine' => $total_denda,
+            'book_status' => $status_buku
         ];
+
+        // dd($data);
 
         $update = $this->kembali->updateKembali($data, $id);
 

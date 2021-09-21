@@ -14,11 +14,11 @@
     <div class="row">
         <div class="col-md-5 my-3">
             <?php $validation = \Config\Services::validation(); ?>
-            <form action="<?= base_url('/member/update/' . $member['id_anggota']) ?>" method="POST">
+            <form action="<?= base_url('/member/update/' . $member['member_id']) ?>" method="POST">
                 <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="nama">Nama anggota</label>
-                    <input type="text" class="form-control <?= ($validation->hasError('nama') ? 'is-invalid' : '') ?>" name="nama" id="nama" value="<?= (old('nama') ? old('nama') : $member['nama']) ?>">
+                    <input type="text" class="form-control <?= ($validation->hasError('nama') ? 'is-invalid' : '') ?>" name="nama" id="nama" value="<?= (old('nama') ? old('nama') : $member['name']) ?>">
                     <?php if ($validation->getError('nama')) : ?>
                         <div id="nama" class="invalid-feedback">
                             <?= $validation->getError('nama') ?>
@@ -28,13 +28,13 @@
                 <div class="form-group">
                     <label for="jkel">Jenis Kelamin</label>
                     <select class="form-control" name="jkel" id="jkel">
-                        <option <?php if ($member['jkel'] == 'Pria') echo 'selected' ?> value="Pria">Pria</option>
-                        <option <?php if ($member['jkel'] == 'Wanita') echo 'selected' ?> value="Wanita">Wanita</option>
+                        <option <?php if ($member['gender'] == 'Pria') echo 'selected' ?> value="Pria">Pria</option>
+                        <option <?php if ($member['gender'] == 'Wanita') echo 'selected' ?> value="Wanita">Wanita</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <textarea class="form-control <?= ($validation->hasError('alamat') ? 'is-invalid' : '') ?>" name="alamat" id="alamat" rows="3"><?= (old('alamat') ? old('alamat') : $member['alamat']) ?></textarea>
+                    <textarea class="form-control <?= ($validation->hasError('alamat') ? 'is-invalid' : '') ?>" name="alamat" id="alamat" rows="3"><?= (old('alamat') ? old('alamat') : $member['address']) ?></textarea>
                     <?php if ($validation->getError('alamat')) : ?>
                         <div id="alamat" class="invalid-feedback">
                             <?= $validation->getError('alamat') ?>

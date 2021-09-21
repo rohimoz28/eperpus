@@ -38,7 +38,7 @@ class Member extends BaseController
     {
         $nama = $this->request->getPost('nama');
         $jkel = $this->request->getPost('jkel');
-        $tgl_daftar = date('d M Y');
+        // $tgl_daftar = date('d M Y');
         $alamat = $this->request->getPost('alamat');
 
         $isValidated = $this->validate([
@@ -63,10 +63,10 @@ class Member extends BaseController
             return redirect()->back()->withInput();
         } else {
             $data = [
-                'nama' => $nama,
-                'jkel' => $jkel,
-                'alamat' => $alamat,
-                'tgl_daftar' => $tgl_daftar
+                'name' => $nama,
+                'gender' => $jkel,
+                'address' => $alamat,
+                // 'tgl_daftar' => $tgl_daftar
             ];
 
             $save = $this->member->insertData($data);
@@ -117,9 +117,10 @@ class Member extends BaseController
         }
 
         $data = [
-            'nama' => $nama,
-            'jkel' => $jkel,
-            'alamat' => $alamat,
+            'name' => $nama,
+            'gender' => $jkel,
+            'address' => $alamat,
+            // 'tgl_daftar' => $tgl_daftar
         ];
 
         $update = $this->member->updateData($data, $id);

@@ -13,43 +13,43 @@
                 <tbody>
                     <tr>
                         <th>Nama Anggota</th>
-                        <td><?= $detail['nama'] ?></td>
+                        <td><?= $detail['name'] ?></td>
                     </tr>
                     <tr>
                         <th>Judul Buku</th>
-                        <td><?= $detail['judul'] ?></td>
+                        <td><?= $detail['book_title'] ?></td>
                     </tr>
                     <tr>
                         <th>Tanggal Pinjam</th>
-                        <td><?= $detail['tgl_pinjam'] ?></td>
+                        <td><?= $detail['date_borrow'] ?></td>
                     </tr>
                     <tr>
                         <th>Tanggal Kembali</th>
-                        <td><?= $detail['tgl_kembali'] ?></td>
+                        <td><?= $detail['date_return'] ?></td>
                     </tr>
                     <tr>
                         <th>Telat</th>
-                        <td><?= $detail['telat'] ?> hari</td>
+                        <td><?= $detail['late'] ?> hari</td>
                     </tr>
                     <tr>
                         <th>Keterangan</th>
-                        <td><?= $detail['keterangan'] ?></td>
+                        <td><?= $detail['description'] ?></td>
                     </tr>
                     <tr>
                         <th>Denda Telat</th>
-                        <td>Rp.<?= $detail['denda_telat'] ?></td>
+                        <td>Rp.<?= $detail['late_fine'] ?></td>
                     </tr>
                     <tr>
                         <th>Denda Buku</th>
-                        <td>Rp.<?= $detail['denda_buku'] ?></td>
+                        <td>Rp.<?= $detail['book_fine'] ?></td>
                     </tr>
                     <tr>
                         <th>Total Denda</th>
-                        <td>Rp.<?= $detail['total_denda'] ?></td>
+                        <td>Rp.<?= $detail['sum_fine'] ?></td>
                     </tr>
                     <tr>
                         <th>Status Buku</th>
-                        <td><?= $detail['status_buku'] ?></td>
+                        <td><?= $detail['book_status'] ?></td>
                     </tr>
                 </tbody>
             </table>
