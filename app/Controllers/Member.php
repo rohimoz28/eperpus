@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\MemberModel;
+/* use PhpOffice\PhpSpreadsheet\Reader\Xls; */
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Member extends BaseController
 {
@@ -141,21 +144,38 @@ class Member extends BaseController
         }
     }
 
-    protected function _validation()
+    public function export()
     {
-        $this->validate([
-            'nama' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Kolom nama anggota wajib diisi'
-                ]
-            ],
-            'alamat' => [
-                'rules' => 'required|trim',
-                'errors' => [
-                    'required' => 'Kolom alamat wajib diisi'
-                ]
-            ]
-        ]);
+        /* $members = new MemberModel(); */
+        $members = $this->member->findAll();
+        $spreadsheet = new Spreadsheet();
+        // Tulis header/nama kolom
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Nama Anggota')
+            ->setCellValue('B1', 'Jenis Kelamin')
+            ->setCellValue('C1', 'Alamat')
+            ->setCellValue('D1', 'Bergabung');
+        $column = 2;
+        // Tulis data member ke cell
+        foreach ($members as $member) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $column, $member['name'])
+                ->setCellValue('B' . $column, $member['gender'])
+                ->setCellValue('C' . $column, $member['address'])
+                ->setCellValue('D' . $column, $member['created_at']);
+            $column++;
+        }
+
+        // Tulis dalam format .xls
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'Data Anggota';
+
+        // Redirect hasil generate xlsx ke web client
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
     }
 }

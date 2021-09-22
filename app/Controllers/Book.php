@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BookModel;
+/* use PhpOffice\PhpSpreadsheet\Reader\Xls; */
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Book extends BaseController
 {
@@ -137,5 +140,42 @@ class Book extends BaseController
         if ($delete) {
             return redirect()->to('book/index')->with('success', 'dihapus!');
         }
+    }
+
+    public function export()
+    {
+        /* $members = new MemberModel(); */
+        $members = $this->book->findAll();
+        $spreadsheet = new Spreadsheet();
+        // Tulis header/nama kolom
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Judul Buku')
+            ->setCellValue('B1', 'Kategori')
+            ->setCellValue('C1', 'Penulis')
+            ->setCellValue('D1', 'Penerbit')
+            ->setCellValue('E1', 'Tanggal Terbit');
+        $column = 2;
+        // Tulis data member ke cell
+        foreach ($members as $member) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $column, $member['book_title'])
+                ->setCellValue('B' . $column, $member['book_category'])
+                ->setCellValue('C' . $column, $member['book_writer'])
+                ->setCellValue('D' . $column, $member['book_publisher'])
+                ->setCellValue('E' . $column, $member['book_date_publish']);
+            $column++;
+        }
+
+        // Tulis dalam format .xls
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'Data Buku';
+
+        // Redirect hasil generate xlsx ke web client
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
     }
 }
