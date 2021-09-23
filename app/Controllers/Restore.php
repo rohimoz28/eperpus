@@ -88,4 +88,25 @@ class Restore extends BaseController
         $data['detail'] = $this->kembali->getKembali($id);
         return view('restore/show-detail', $data);
     }
+
+    public function generatePdf()
+    {
+        $dompdf = new \Dompdf\Dompdf();
+
+        $data['sewa'] = $this->kembali->join('members', 'members.member_id = rents.member_id')
+            ->join('books', 'books.book_id = rents.book_id')
+            ->where('book_status', 'Kembali')
+            ->findAll();
+        // Sending data to view file
+        $dompdf->loadHtml(view('restore/template-pdf', $data));
+        // setting paper to portrait, also we have landscape
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        // Download pdf
+        $dompdf->stream();
+        // to give pdf file name
+        // $dompdf->stream("myfile");
+
+        return redirect()->to(base_url('restore'));
+    }
 }

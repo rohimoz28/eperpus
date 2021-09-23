@@ -59,6 +59,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('borrow/create', 'Borrow::create');
     // Restore
     $routes->get('restore', 'Restore::index');
+    $routes->get('restore/generate-pdf', 'Restore::generatePdf');
 });
 
 /*

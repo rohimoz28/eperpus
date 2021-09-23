@@ -3,10 +3,12 @@
 <?= $this->section('content') ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-3">
-            <h2 class="text-center">Pengembalian Buku</h2>
-        </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between col-md-10 my-3">
+        <h1 class="h3 mb-0 text-gray-800">Pengembalian Buku</h1>
+        <form action="<?= base_url('restore/generatePdf') ?>" method="POST">
+            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Data Pengembalian Buku</button>
+        </form>
     </div>
     <div class="row">
         <div class="col-md-10 mt-2">
