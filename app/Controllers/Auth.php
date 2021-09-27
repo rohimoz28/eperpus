@@ -21,27 +21,33 @@ class Auth extends BaseController
     $user = $this->request->getVar('username');
     $pass = $this->request->getVar('password');
 
-    $user = $this->user->where('username', $user)->first();
-    // Cek username
-    if ($user) {
-      $verify_pass = $user['password'];
-      // Cek password
-      if ($verify_pass == $pass) {
-        $ses_data = [
-          'user_id' => $user['user_id'],
-          'username' => $user['username'],
-          'logged_in' => TRUE
-        ];
+    $user = $this->user->where('username', $user)
+      ->where('password', $pass)
+      ->first();
 
-        $session->set($ses_data);
-        return redirect()->to('home/index');
+    // Cek login 
+    if ($user) {
+      $name = $user['username'];
+      $role = $user['role'];
+
+      $data = [
+        'username' => $name,
+        'role' => $role,
+        'logged_in' => TRUE
+      ];
+      // Set session
+      $session->set($data);
+      // cek user role
+      // role admin
+      if ($role == 1) {
+        return redirect()->to('home');
       } else {
-        $session->setFlashdata('error', 'Password yang anda masukkan salah!');
-        return redirect()->to('auth/login');
+        // role user
+        return redirect()->to('borrow');
       }
     } else {
-      $session->setFlashdata('error', 'Username yang anda masukkan salah!');
-      return redirect()->to('auth/login');
+      // gagal login || wrong username or password
+      return redirect()->back()->with('error', 'username atau password salah!');
     }
   }
 

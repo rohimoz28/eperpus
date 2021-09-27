@@ -8,7 +8,7 @@ $routes = Services::routes();
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
-    require SYSTEMPATH . 'Config/Routes.php';
+  require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /*
@@ -38,28 +38,31 @@ $routes->get('/', 'Auth::login');
 /* $routes->get('/member', 'Member::index', ['filter' => 'auth']); */
 // Route Book
 $routes->group('', ['filter' => 'auth'], function ($routes) {
-    // Member
-    $routes->get('member', 'Member::index');
-    $routes->get('member/create', 'Member::create');
-    $routes->post('member/store', 'Member::store');
-    $routes->get('member/edit/(:num)', 'Member::edit/$1');
-    $routes->put('member/update/(:num)', 'Member::update/$1');
-    /* $routes->patch('member/update/(:num)', 'Member::update/$1'); */
-    $routes->get('member/delete/(:num)', 'Member::delete/$1');
+  $routes->get('home', 'Home::index', ['as' => 'home']);
+  // Member
+  $routes->get('member', 'Member::index');
+  $routes->get('member/create', 'Member::create');
+  $routes->post('member/store', 'Member::store');
+  $routes->get('member/edit/(:num)', 'Member::edit/$1');
+  $routes->put('member/update/(:num)', 'Member::update/$1');
+  /* $routes->patch('member/update/(:num)', 'Member::update/$1'); */
+  $routes->get('member/delete/(:num)', 'Member::delete/$1');
 
-    // Book
-    $routes->get('book', 'Book::index');
-    $routes->get('book/create', 'Book::create');
-    $routes->post('book/store', 'Book::store');
-    $routes->get('book/edit/(:segment)', 'Book::edit/$1');
-    $routes->put('book/update/(:segment)', 'Book::update/$1');
-    $routes->get('book/delete/(:num)', 'Book::delete/$1');
-    // Borrow
-    $routes->get('borrow', 'Borrow::index');
-    $routes->get('borrow/create', 'Borrow::create');
-    // Restore
-    $routes->get('restore', 'Restore::index');
-    $routes->get('restore/generate-pdf', 'Restore::generatePdf');
+  // Book
+  $routes->get('book', 'Book::index');
+  $routes->get('book/create', 'Book::create');
+  $routes->post('book/store', 'Book::store');
+  $routes->get('book/edit/(:segment)', 'Book::edit/$1');
+  $routes->put('book/update/(:segment)', 'Book::update/$1');
+  $routes->get('book/delete/(:num)', 'Book::delete/$1');
+  // Borrow
+  $routes->get('borrow', 'Borrow::index');
+  $routes->get('borrow/create', 'Borrow::create');
+  // Restore
+  $routes->get('restore', 'Restore::index');
+  $routes->get('restore/generate-pdf', 'Restore::generatePdf');
+  // Page
+  $routes->get('page', 'Page::index');
 });
 
 /*
@@ -76,5 +79,5 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
  * needing to reload it.
  */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+  require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

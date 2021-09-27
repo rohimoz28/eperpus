@@ -11,8 +11,8 @@ class RentSeeder extends Seeder
     {
         $data = [
             [
-                'id_member' => 1,
-                'id_book' => 1,
+                'member_id' => 1,
+                'book_id' => 1,
                 'date_borrow' => '2021-Sep-06',
                 'date_return' => '2021-Sep-13',
                 'late' => 1,
@@ -24,8 +24,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 2,
-                'id_book' => 2,
+                'member_id' => 2,
+                'book_id' => 2,
                 'date_borrow' => '2021-Sep-07',
                 'date_return' => '2021-Sep-11',
                 'late' => 2,
@@ -37,8 +37,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 2,
-                'id_book' => 3,
+                'member_id' => 2,
+                'book_id' => 3,
                 'date_borrow' => '2021-Sep-07',
                 'date_return' => '2021-Sep-11',
                 'late' => 2,
@@ -50,8 +50,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 1,
-                'id_book' => 3,
+                'member_id' => 1,
+                'book_id' => 3,
                 'date_borrow' => '2021-Sep-07',
                 'date_return' => '2021-Sep-11',
                 'late' => 2,
@@ -63,8 +63,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 3,
-                'id_book' => 4,
+                'member_id' => 3,
+                'book_id' => 4,
                 'date_borrow' => '2021-Sep-07',
                 'date_return' => '2021-Sep-11',
                 'late' => 3,
@@ -76,8 +76,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 4,
-                'id_book' => 1,
+                'member_id' => 4,
+                'book_id' => 1,
                 'date_borrow' => '2021-Sep-07',
                 'date_return' => '2021-Sep-11',
                 'late' => 0,
@@ -90,8 +90,8 @@ class RentSeeder extends Seeder
             ],
             // Pinjam
             [
-                'id_member' => 1,
-                'id_book' => 1,
+                'member_id' => 1,
+                'book_id' => 1,
                 'date_borrow' => '2021-Sep-06',
                 'date_return' => '',
                 'late' => 0,
@@ -103,8 +103,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 1,
-                'id_book' => 2,
+                'member_id' => 1,
+                'book_id' => 2,
                 'date_borrow' => '2021-Sep-04',
                 'date_return' => '',
                 'late' => 0,
@@ -116,8 +116,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 2,
-                'id_book' => 1,
+                'member_id' => 2,
+                'book_id' => 1,
                 'date_borrow' => '2021-Sep-06',
                 'date_return' => '',
                 'late' => 0,
@@ -129,8 +129,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 2,
-                'id_book' => 4,
+                'member_id' => 2,
+                'book_id' => 4,
                 'date_borrow' => '2021-Sep-06',
                 'date_return' => '',
                 'late' => 0,
@@ -142,8 +142,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 3,
-                'id_book' => 3,
+                'member_id' => 3,
+                'book_id' => 3,
                 'date_borrow' => '2021-Sep-06',
                 'date_return' => '',
                 'late' => 0,
@@ -155,8 +155,8 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
             [
-                'id_member' => 3,
-                'id_book' => 5,
+                'member_id' => 3,
+                'book_id' => 5,
                 'date_borrow' => '2021-Sep-06',
                 'date_return' => '',
                 'late' => 0,

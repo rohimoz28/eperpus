@@ -41,26 +41,28 @@
       <!-- Divider -->
       <hr class="sidebar-divider mt-0">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Admin
-      </div>
+      <?php if (session()->get('role') == 1) : ?>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Admin
+        </div>
 
-      <!-- Nav Item - Admin -->
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('home/index') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Beranda</span></a>
-      </li>
+        <!-- Nav Item - Admin -->
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('home/index') ?>">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Beranda</span></a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Master data</span></a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Master data</span></a>
+        </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+      <?php endif ?>
 
       <!-- Heading -->
       <div class="sidebar-heading">
@@ -126,7 +128,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Hello, <?= session()->get('username') ?></span>
                 <img class="img-profile rounded-circle" src="<?= base_url('assets/sbadmin') ?>/img/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->
