@@ -1,7 +1,9 @@
-<?= $this->extend('layout/master-layout') ?>
+<?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
 
-<h2>Ini halaman Home</h2>
+<div class="container-fluid">
+  <h1 class="h2">Halaman Beranda</h1>
+</div>
 
 <?= $this->endSection() ?>
