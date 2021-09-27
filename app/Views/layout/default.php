@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>eperpus</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?= base_url('assets/sbadmin') ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,13 +39,24 @@
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider mt-0">
 
-      <!-- Nav Item - Dashboard -->
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Admin
+      </div>
+
+      <!-- Nav Item - Admin -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('home/index') ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Beranda</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Master data</span></a>
       </li>
 
       <!-- Divider -->
@@ -57,7 +68,7 @@
       </div>
 
 
-      <!-- Nav Item - Dashboard -->
+      <!-- Nav Item - Menu -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('member') ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
