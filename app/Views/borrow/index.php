@@ -38,7 +38,7 @@
               <td><?= $res['name'] ?></td>
               <td><?= $res['book_title'] ?></td>
               <td><?= $res['date_borrow'] ?></td>
-              <td><a href="<?= base_url('restore/edit/' . $res['rent_id']) ?>" class="badge badge-pill badge-success">Pengembalian</a></td>
+              <td><a href="<?= base_url('restore/edit/' . $res['rent_id']) ?>" class="badge badge-pill badge-success">Kembali</a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

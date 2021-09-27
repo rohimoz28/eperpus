@@ -48,10 +48,10 @@
                   <?php endif; ?>
                   <form class="user" method="POST" action="<?= base_url('auth/loginCheck') ?>">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="admin">
+                      <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="username">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="admin">
+                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="password">
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
@@ -59,8 +59,8 @@
                     <hr>
                   </form>
                   <div class="text-center">
-                    <p style="font-size: small;font-weight: bold;">username: admin
-                      <br> password: admin
+                    <p style="font-size: small;font-weight: bold;">username: admin | user
+                      <br> password: admin | user
                     </p>
                   </div>
                 </div>

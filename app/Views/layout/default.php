@@ -33,7 +33,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('home/index') ?>">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-book-open"></i>
         </div>
         <div class="sidebar-brand-text mx-3">ePerpus</div>
       </a>
@@ -50,14 +50,20 @@
         <!-- Nav Item - Admin -->
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('home/index') ?>">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-fw fa-house-user"></i>
             <span>Beranda</span></a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-fw fa-database"></i>
             <span>Master data</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-pen"></i>
+            <span>Laporan</span></a>
         </li>
 
         <!-- Divider -->
@@ -73,25 +79,25 @@
       <!-- Nav Item - Menu -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('member') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-user"></i>
           <span>Anggota</span></a>
       </li>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('book') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-book"></i>
           <span>Buku</span></a>
       </li>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('borrow') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-arrow-right"></i>
           <span>Pinjam</span></a>
       </li>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url('restore') ?>">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-arrow-left"></i>
           <span>Kembali</span></a>
       </li>
       <!-- Divider -->
