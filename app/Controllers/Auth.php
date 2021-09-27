@@ -10,7 +10,7 @@ class Auth extends BaseController
     public function login()
     {
         helper('form');
-        return view('auth/index');
+        return view('auth/login');
     }
 
     public function loginCheck()
