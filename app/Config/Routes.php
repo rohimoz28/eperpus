@@ -63,6 +63,12 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('restore/generate-pdf', 'Restore::generatePdf');
   // Page
   $routes->get('page', 'Page::index');
+  // Master Category
+  $routes->get('category', 'Admin\Category::index');
+  $routes->post('category', 'Admin\Category::store');
+  $routes->get('category/edit/(:num)', 'Admin\Category::edit/$1');
+  $routes->put('category/(:num)', 'Admin\Category::update/$1');
+  $routes->get('category/delete/(:num)', 'Admin\Category::delete/$1');
 });
 
 /*
