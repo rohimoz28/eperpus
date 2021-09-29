@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BookModel;
+use App\Models\CategoryModel;
+use phpDocumentor\Reflection\Types\This;
 /* use PhpOffice\PhpSpreadsheet\Reader\Xls; */
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -13,6 +15,7 @@ class Book extends BaseController
   public function __construct()
   {
     $this->book = new BookModel();
+    $this->category = new CategoryModel();
     session();
   }
 
@@ -24,7 +27,8 @@ class Book extends BaseController
 
   public function create()
   {
-    return view('book/create');
+    $data['categories'] = $this->category->findAll();
+    return view('book/create', $data);
   }
 
   public function store()
@@ -34,6 +38,8 @@ class Book extends BaseController
     $penulis = $this->request->getPost('penulis');
     $penerbit = $this->request->getPost('penerbit');
     $th_terbit = $this->request->getPost('th_terbit');
+
+    /* dd($kategori); */
 
     $isValidated = $this->validate([
       'judul' => [
@@ -56,13 +62,16 @@ class Book extends BaseController
     } else {
       $data = [
         'book_title' => $judul,
-        'book_category' => $kategori,
+        'category_id' => $kategori,
         'book_writer' => $penulis,
         'book_publisher' => $penerbit,
         'book_date_publish' => $th_terbit
       ];
 
-      $save = $this->book->insertBook($data);
+      /* dd($data); */
+
+      /* $save = $this->book->insertBook($data); */
+      $save = $this->book->insert($data);
 
       if ($save) {
         session()->setFlashdata('success', 'ditambahkan');

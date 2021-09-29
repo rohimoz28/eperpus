@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Category extends Model
+class CategoryModel extends Model
 {
   protected $DBGroup              = 'default';
   protected $table                = 'categories';
@@ -14,5 +14,9 @@ class Category extends Model
   protected $returnType           = 'array';
   protected $useSoftDeletes       = false;
   protected $protectFields        = true;
-  protected $allowedFields        = ['category_name', 'created_at', 'edited_at'];
+  protected $allowedFields        = ['category_name', 'created_at', 'updated_at'];
+
+  /* public function getCategory() */
+  /* { */
+  /* } */
 }

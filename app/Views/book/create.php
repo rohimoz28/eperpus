@@ -23,8 +23,10 @@
         <div class="form-group">
           <label for="kategori">Kategori</label>
           <select class="form-control" name="kategori" id="kategori">
-            <option value="Komik">Komik</option>
-            <option value="Novel">Novel</option>
+            <?php foreach ($categories as $category) : ?>
+              <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
+              <!--              <option value="Novel">Novel</option> -->
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="form-group">
