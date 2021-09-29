@@ -4,37 +4,30 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Member extends Migration
+class Category extends Migration
 {
   public function up()
   {
     $this->forge->addField([
-      'member_id' => [
+      'category_id' => [
         'type' => 'INT',
         'constraint' => 5,
         'unsigned' => TRUE,
         'auto_increment' => TRUE
       ],
-      'name' => [
+      'category_name' => [
         'type' => 'VARCHAR',
         'constraint' => 100
-      ],
-      'gender' => [
-        'type' => 'VARCHAR',
-        'constraint' => 100
-      ],
-      'address' => [
-        'type' => 'TEXT'
       ],
       'created_at datetime default current_timestamp',
       'updated_at datetime default current_timestamp on update current_timestamp'
     ]);
-    $this->forge->addKey('member_id', true);
-    $this->forge->createTable('members');
+    $this->forge->addKey('category_id', true);
+    $this->forge->createTable('categories');
   }
 
   public function down()
   {
-    $this->forge->dropTable('members');
+    $this->forge->dropTable('categories');
   }
 }
