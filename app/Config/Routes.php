@@ -69,6 +69,10 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('category/edit/(:num)', 'Admin\Category::edit/$1');
   $routes->put('category/(:num)', 'Admin\Category::update/$1');
   $routes->get('category/delete/(:num)', 'Admin\Category::delete/$1');
+  // Lateday
+  $routes->get('latefine', 'Admin\Latefine::index');
+  $routes->get('latefine/edit', 'Admin\Latefine::edit');
+  $routes->get('latefine/update/(:num)', 'Admin\Latefine::update/$1');
 });
 
 /*

@@ -41,9 +41,16 @@ class Restore extends BaseController
         $tgl_kembali = date('Y-M-d');
         $hitung_telat = abs(strtotime($tgl_kembali) - strtotime($tgl_pinjam));
         $hari_telat = floor($hitung_telat / (60 * 60 * 24));
+        // Hitung Hari Telat
+        if ($hari_telat > 3) {
+            $telat = $hari_telat - 3;
+            $denda_telat = 1000 * $telat;
+        } else {
+            $telat = 0;
+            $denda_telat = 0;
+        }
         // Hitung Denda Hari Telat
-        $denda_telat = 1000 * $hari_telat;
-        // dd($tgl_pinjam);
+        /* $denda_telat = 1000 * $hari_telat; */
         // Hitung Denda Buku
         $keterangan_buku = $this->request->getPost('keterangan_buku');
         switch ($keterangan_buku) {
@@ -74,7 +81,7 @@ class Restore extends BaseController
             'book_status' => $status_buku
         ];
 
-        // dd($data);
+        dd($data);
 
         $update = $this->kembali->updateKembali($data, $id);
 

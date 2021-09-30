@@ -62,7 +62,8 @@
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Master Data :</h6>
-              <a class="collapse-item" href="utilities-animation.html">Denda</a>
+              <a class="collapse-item" href="<?= base_url('latefine') ?>">Denda Telat</a>
+              <a class="collapse-item" href="utilities-animation.html">Denda Buku</a>
               <a class="collapse-item" href="<?= base_url('category') ?>">Kategori Buku</a>
             </div>
           </div>
