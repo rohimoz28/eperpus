@@ -15,7 +15,7 @@ class LateFine extends Migration
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
             ],
-            'late_day' => [
+            'rent_day' => [
                 'type' => 'INT',
                 'constraint' => 5
             ],

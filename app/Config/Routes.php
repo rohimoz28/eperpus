@@ -72,7 +72,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   // Latefine
   $routes->get('latefine', 'Admin\Latefine::index');
   $routes->get('latefine/edit', 'Admin\Latefine::edit');
-  $routes->get('latefine/update/(:num)', 'Admin\Latefine::update/$1');
+  $routes->put('latefine/update/(:num)', 'Admin\Latefine::update/$1');
   // Bookfine
   $routes->get('bookfine', 'Admin\Bookfine::index');
   $routes->get('bookfine/create', 'Admin\Bookfine::create');

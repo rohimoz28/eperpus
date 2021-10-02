@@ -9,7 +9,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<?= $validation->listErrors(); ?>
 			<form action="<?= base_url('bookfine/store') ?>" method="POST">
 				<div class="form-group">
 					<label for="deskripsi">Deskripsi</label>

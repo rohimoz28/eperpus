@@ -14,7 +14,7 @@ class LatefineModel extends Model
     /* protected $returnType           = 'array'; */
     /* protected $useSoftDeletes       = false; */
     /* protected $protectFields        = true; */
-    protected $allowedFields        = ['late_fine', 'late_day', 'created_at'];
+    protected $allowedFields        = ['late_fine_id', 'rent_day', 'late_fine', 'created_at'];
 
     // Dates
     /* protected $useTimestamps        = false; */

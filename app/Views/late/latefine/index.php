@@ -9,23 +9,29 @@
 	</div>
 	<div class="row">
 		<div class="col-md-5">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Denda telat berhasil</strong> <?= session()->getFlashdata('success') ?>.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th scope="col" class="text-center">Hari Telat</th>
+						<th scope="col" class="text-center">Masa Pinjam</th>
 						<th scope="col" class="text-center">Denda Perhari</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php foreach ($latefine as $res) : ?>
 						<tr>
-							<td class="text-center"><?= $res['late_day'] ?></td>
-							<td class="text-center"><?= $res['late_fine'] ?></td>
+							<td class="text-center"><?= $res['rent_day'] ?> hari</td>
+							<td class="text-center"><?= $res['late_fine'] ?> /hari</td>
 						</tr>
+					<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endforeach; ?>
-		<a href="<?= base_url('latefine/edit') ?>" class="btn btn-info">Ubah</a>
+			<a href="<?= base_url('latefine/edit') ?>" class="btn btn-info">Ubah</a>
 		</div>
 	</div>
 </div>
