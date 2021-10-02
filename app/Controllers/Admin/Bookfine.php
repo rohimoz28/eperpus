@@ -11,6 +11,7 @@ class Bookfine extends BaseController
     {
         helper(['url', 'form']);
         $this->bookfines = new BookFineModel();
+        $this->form_validation = \Config\Services::validation();
     }
 
     public function index()
@@ -21,7 +22,8 @@ class Bookfine extends BaseController
 
     public function create()
     {
-        return view('late/bookfine/create');
+        $data['validation'] = \Config\Services::validation();
+        return view('late/bookfine/create', $data);
     }
 
     public function store()
@@ -34,9 +36,24 @@ class Bookfine extends BaseController
             'book_fine' => $denda
         ];
 
-
-        if (!$this->_validation()) {
-            return redirect()->back()->withInput();
+        // Cek Validasi
+        if (!$this->validate([
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kolom deskripsi harus diisi!'
+                ]
+            ],
+            'denda' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Kolom denda buku harus diisi!',
+                    'integer' => 'Harus berupa angka!'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('bookfine/create')->withInput()->with('validation', $validation);
         } else {
             $save = $this->bookfines->insert($data);
 
@@ -55,7 +72,7 @@ class Bookfine extends BaseController
         }
     }
 
-    protected function _validation()
+    public function _validation()
     {
         $isValidate = $this->validate([
             'deskripsi' => [

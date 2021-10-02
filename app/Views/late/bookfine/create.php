@@ -9,24 +9,22 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<?php $validation = \Config\Services::validation(); ?>
 			<form action="<?= base_url('bookfine/store') ?>" method="POST">
-				<?= csrf_field() ?>
 				<div class="form-group">
 					<label for="deskripsi">Deskripsi</label>
-					<input type="text" name="deskripsi" class="form-control <?= ($validation->getError('deskripsi') ? 'is-invalid' : '') ?>" id="deskripsi">
-					<?php if ($validation->getError('deskripsi')) : ?>
+					<input type="text" name="deskripsi" class="form-control <?= ($validation->hasError('deskripsi') ? 'is-invalid' : '') ?>" id="deskripsi" value="<?= old('deskripsi') ?>">
+					<?php if ($validation->hasError('deskripsi')) : ?>
 						<div class="invalid-feedback">
-							<?= $error = $validation->getError('denda'); ?>
+							<?= $validation->getError('deskripsi'); ?>
 						</div>
 					<?php endif; ?>
 				</div>
 				<div class="form-group">
 					<label for="denda">Denda</label>
-					<input type="text" name="denda" class="form-control <?= ($validation->getError('denda') ? 'is-invalid' : '') ?>" id="denda">
+					<input type="text" name="denda" class="form-control <?= ($validation->hasError('denda') ? 'is-invalid' : '') ?>" id="denda" value="<?= old('denda') ?>">
 					<?php if ($validation->getError('denda')) : ?>
 						<div class="invalid-feedback">
-							<?= $error = $validation->getError('denda'); ?>
+							<?= $validation->getError('denda'); ?>
 						</div>
 					<?php endif; ?>
 				</div>

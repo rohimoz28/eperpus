@@ -32,9 +32,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($bookfines as $res) : ?>
+					<?php foreach ($bookfines as $no => $res) : ?>
 						<tr>
-							<th scope="row">1</th>
+							<th scope="row"><?= $no + 1 ?></th>
 							<td class="text-center"><?= $res['description'] ?></td>
 							<td class="text-center"><?= $res['book_fine'] ?></td>
 							<td class="text-center">
