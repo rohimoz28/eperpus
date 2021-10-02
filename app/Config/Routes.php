@@ -75,6 +75,8 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('latefine/update/(:num)', 'Admin\Latefine::update/$1');
   // Bookfine
   $routes->get('bookfine', 'Admin\Bookfine::index');
+  $routes->get('bookfine/create', 'Admin\Bookfine::create');
+  $routes->post('bookfine/store', 'Admin\Bookfine::store');
 });
 
 /*

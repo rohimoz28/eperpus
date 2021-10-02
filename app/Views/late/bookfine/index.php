@@ -14,6 +14,14 @@
 	</div>
 	<div class="row">
 		<div class="col-md-7">
+			<?php if (session('success')) : ?>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<strong>Denda buku berhasil</strong> <?= session('success') ?>.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<?php endif; ?>
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
