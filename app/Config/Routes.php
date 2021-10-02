@@ -78,6 +78,8 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('bookfine/create', 'Admin\Bookfine::create');
   $routes->post('bookfine/store', 'Admin\Bookfine::store');
   $routes->get('bookfine/delete/(:num)', 'Admin\Bookfine::delete/$1');
+  $routes->get('bookfine/edit/(:num)', 'Admin\Bookfine::edit/$1');
+  $routes->put('bookfine/update/(:num)', 'Admin\Bookfine::update/$1');
 });
 
 /*

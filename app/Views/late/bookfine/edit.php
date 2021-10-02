@@ -9,11 +9,12 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<?= $validation->listErrors(); ?>
-			<form action="<?= base_url('bookfine/store') ?>" method="POST">
+			<form action="<?= base_url('bookfine/update/' . $bookfine['book_fine_id']) ?>" method="POST">
+				<?= csrf_field() ?>
+				<input type="hidden" name="_method" value="PUT">
 				<div class="form-group">
 					<label for="deskripsi">Deskripsi</label>
-					<input type="text" name="deskripsi" class="form-control <?= ($validation->hasError('deskripsi') ? 'is-invalid' : '') ?>" id="deskripsi" value="<?= old('deskripsi') ?>">
+					<input type="text" name="deskripsi" class="form-control <?= ($validation->hasError('deskripsi') ? 'is-invalid' : '') ?>" id="deskripsi" value="<?= (old('deskripsi')) ? old('deskripsi') : $bookfine['description'] ?>">
 					<?php if ($validation->hasError('deskripsi')) : ?>
 						<div class="invalid-feedback">
 							<?= $validation->getError('deskripsi'); ?>
@@ -22,7 +23,7 @@
 				</div>
 				<div class="form-group">
 					<label for="denda">Denda</label>
-					<input type="text" name="denda" class="form-control <?= ($validation->hasError('denda') ? 'is-invalid' : '') ?>" id="denda" value="<?= old('denda') ?>">
+					<input type="text" name="denda" class="form-control <?= ($validation->hasError('denda') ? 'is-invalid' : '') ?>" id="denda" value="<?= (old('denda')) ? old('denda') : $bookfine['book_fine'] ?>">
 					<?php if ($validation->getError('denda')) : ?>
 						<div class="invalid-feedback">
 							<?= $validation->getError('denda'); ?>

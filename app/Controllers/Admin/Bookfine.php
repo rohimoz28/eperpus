@@ -63,18 +63,24 @@ class Bookfine extends BaseController
         }
     }
 
-    public function delete($id)
+    public function edit($id)
     {
-        $remove = $this->bookfines->delete(['book_fine_id' => $id]);
+        /* $data['bookfine'] = $this->bookfines->getWhere('book_fine_id', $id); */
+        $data = [
+            'bookfine' => $this->bookfines->Where('book_fine_id', $id)->first(),
+            'validation' => \Config\Services::validation()
+        ];
 
-        if ($remove) {
-            return redirect()->to('bookfine')->with('success', 'dihapus');
-        }
+        return view('late/bookfine/edit', $data);
     }
 
-    public function _validation()
+    public function update($id)
     {
-        $isValidate = $this->validate([
+        $deskripsi = $this->request->getVar('deskripsi');
+        $denda = $this->request->getVar('denda');
+
+        // Cek Validasi
+        if (!$this->validate([
             'deskripsi' => [
                 'rules' => 'required',
                 'errors' => [
@@ -84,10 +90,30 @@ class Bookfine extends BaseController
             'denda' => [
                 'rules' => 'required|integer',
                 'errors' => [
-                    'required' => 'Kolom denda harus diisi!',
-                    'integer' => 'Harus diisi dengan angka!'
+                    'required' => 'Kolom denda buku harus diisi!',
+                    'integer' => 'Harus berupa angka!'
                 ]
             ]
-        ]);
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('bookfine/edit/' . $id)->withInput()->with('validation', $validation);
+        } else {
+            $this->bookfines->save([
+                'book_fine_id' => $id,
+                'description' => $deskripsi,
+                'book_fine' => $denda
+            ]);
+
+            return redirect()->to('bookfine')->with('success', 'diubah!');
+        }
+    }
+
+    public function delete($id)
+    {
+        $remove = $this->bookfines->delete(['book_fine_id' => $id]);
+
+        if ($remove) {
+            return redirect()->to('bookfine')->with('success', 'dihapus');
+        }
     }
 }
