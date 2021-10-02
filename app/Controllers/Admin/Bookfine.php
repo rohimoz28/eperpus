@@ -9,6 +9,7 @@ class Bookfine extends BaseController
 {
     public function __construct()
     {
+        helper(['url', 'form']);
         $this->bookfines = new BookFineModel();
     }
 
@@ -33,16 +34,43 @@ class Bookfine extends BaseController
             'book_fine' => $denda
         ];
 
-        /* dd($data); */
 
-        $save = $this->bookfines->insert($data);
+        if (!$this->_validation()) {
+            return redirect()->back()->withInput();
+        } else {
+            $save = $this->bookfines->insert($data);
 
-        if ($save) {
-            return redirect()->to('bookfine')->with('success', 'ditambahkan');
+            if ($save) {
+                return redirect()->to('bookfine')->with('success', 'ditambahkan');
+            }
+        }
+    }
+
+    public function delete($id)
+    {
+        $remove = $this->bookfines->delete(['book_fine_id' => $id]);
+
+        if ($remove) {
+            return redirect()->to('bookfine')->with('success', 'dihapus');
         }
     }
 
     protected function _validation()
     {
+        $isValidate = $this->validate([
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Kolom deskripsi harus diisi!'
+                ]
+            ],
+            'denda' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Kolom denda harus diisi!',
+                    'integer' => 'Harus diisi dengan angka!'
+                ]
+            ]
+        ]);
     }
 }

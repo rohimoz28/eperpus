@@ -39,7 +39,7 @@
 							<td class="text-center"><?= $res['book_fine'] ?></td>
 							<td class="text-center">
 								<a href="<?= base_url('bookfine/edit/' . $res['book_fine_id']) ?>" class="badge badge-pill badge-success">Ubah</a>
-								<a href="<?= base_url('bookfine/delete/' . $res['book_fine_id']) ?>" class="badge badge-pill badge-danger">Hapus</a>
+								<a href="<?= base_url('bookfine/delete/' . $res['book_fine_id']) ?>" class="badge badge-pill badge-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
 							</td>
 						</tr>
 					<?php endforeach; ?>

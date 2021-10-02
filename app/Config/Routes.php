@@ -77,6 +77,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('bookfine', 'Admin\Bookfine::index');
   $routes->get('bookfine/create', 'Admin\Bookfine::create');
   $routes->post('bookfine/store', 'Admin\Bookfine::store');
+  $routes->get('bookfine/delete/(:num)', 'Admin\Bookfine::delete/$1');
 });
 
 /*
