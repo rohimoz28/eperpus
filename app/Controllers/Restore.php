@@ -4,11 +4,13 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\RentModel;
+use App\Models\BookFineModel;
 
 class Restore extends BaseController
 {
     public function __construct()
     {
+        $this->dendaBuku = new BookFineModel();
         $this->kembali = new RentModel();
     }
 
@@ -29,7 +31,13 @@ class Restore extends BaseController
 
     public function edit($id)
     {
-        $data['restore'] = $this->kembali->editKembali($id);
+        /* $data['bookfines'] = $this->dendaBuku->findAll(); */
+        /* $data['restore'] = $this->kembali->editKembali($id); */
+
+        $data = [
+            'bookfines' => $this->dendaBuku->findAll(),
+            'restore' => $this->kembali->editKembali($id)
+        ];
         return view('restore/edit', $data);
     }
 
@@ -81,7 +89,7 @@ class Restore extends BaseController
             'book_status' => $status_buku
         ];
 
-        dd($data);
+        /* dd($data); */
 
         $update = $this->kembali->updateKembali($data, $id);
 

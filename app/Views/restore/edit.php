@@ -1,4 +1,4 @@
-<?= $this->extend('layout/master-layout') ?>
+<?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
 
@@ -25,9 +25,9 @@
                 <div class="form-group">
                     <label for="judul">Judul Buku</label>
                     <select class="form-control" name="keterangan_buku">
-                        <option value="Baik">Baik</option>
-                        <option value="Rusak">Rusak</option>
-                        <option value="Hilang">Hilang</option>
+                        <?php foreach ($bookfines as $data) : ?>
+                            <option value="<?= $data['description'] ?>"><?= $data['description'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <a href="<?= base_url('borrow/index') ?>" class="btn btn-warning">Menu Pinjam</a>
