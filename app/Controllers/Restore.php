@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\RentModel;
 use App\Models\BookFineModel;
+use App\Models\LatefineModel;
 
 class Restore extends BaseController
 {
@@ -12,6 +13,7 @@ class Restore extends BaseController
     {
         $this->dendaBuku = new BookFineModel();
         $this->kembali = new RentModel();
+        $this->dendaTelat = new LatefineModel();
     }
 
     public function index()
@@ -44,38 +46,31 @@ class Restore extends BaseController
     public function update()
     {
         $id = $this->request->getPost('id_sewa');
+        $keterangan_buku = $this->request->getVar('keterangan_buku');
         $tgl_pinjam = $this->request->getPost('tgl_pinjam');
-        // Hitung Hari Telat
         $tgl_kembali = date('Y-M-d');
         $hitung_telat = abs(strtotime($tgl_kembali) - strtotime($tgl_pinjam));
         $hari_telat = floor($hitung_telat / (60 * 60 * 24));
-        // Hitung Hari Telat
-        if ($hari_telat > 3) {
-            $telat = $hari_telat - 3;
+
+        // Hitung Denda Hari Telat
+        $sewa = $this->dendaTelat->select('rent_day')->where('late_fine_id', 1)->first();
+        $sewa_int = (int)$sewa['rent_day'];
+
+        if ($hari_telat > $sewa_int) {
+            $telat = $hari_telat - $sewa_int;
             $denda_telat = 1000 * $telat;
         } else {
             $telat = 0;
             $denda_telat = 0;
         }
-        // Hitung Denda Hari Telat
-        /* $denda_telat = 1000 * $hari_telat; */
+
         // Hitung Denda Buku
-        $keterangan_buku = $this->request->getPost('keterangan_buku');
-        switch ($keterangan_buku) {
-            case 'Rusak':
-                $denda_buku = 10000;
-                break;
+        $denda_buku = $this->dendaBuku->select('book_fine')->where('book_fine_id', $keterangan_buku)->first();
+        // Ubah tipe data array menjadi integer
+        $denda_buku_int = (int)$denda_buku['book_fine'];
 
-            case 'Hilang':
-                $denda_buku = 50000;
-                break;
-
-            default:
-                $denda_buku = 30000;
-                break;
-        }
-        // Hitung Total Denda Buku
-        $total_denda = $denda_telat + $denda_buku;
+        // Hitung Total Denda
+        $total_denda = $denda_telat + $denda_buku_int;
 
         $status_buku = 'Kembali';
 

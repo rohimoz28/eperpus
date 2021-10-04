@@ -26,12 +26,12 @@
                     <label for="judul">Judul Buku</label>
                     <select class="form-control" name="keterangan_buku">
                         <?php foreach ($bookfines as $data) : ?>
-                            <option value="<?= $data['description'] ?>"><?= $data['description'] ?></option>
+                            <option value="<?= $data['book_fine_id'] ?>"><?= $data['description'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <a href="<?= base_url('borrow/index') ?>" class="btn btn-warning">Menu Pinjam</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
+                <a href="<?= base_url('borrow/index') ?>" class="btn btn-warning">Menu Pinjam</a>
             </form>
         </div>
     </div>
