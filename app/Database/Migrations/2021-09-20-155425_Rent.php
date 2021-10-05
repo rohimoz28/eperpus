@@ -37,18 +37,23 @@ class Rent extends Migration
                 'type' => 'INT',
                 'constraint' => 10
             ],
-            'description' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100
+            'book_fine_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => TRUE,
             ],
+            /* 'description' => [ */
+            /*     'type' => 'VARCHAR', */
+            /*     'constraint' => 100 */
+            /* ], */
             'late_fine' => [
                 'type' => 'INT',
                 'constraint' => 10
             ],
-            'book_fine' => [
-                'type' => 'INT',
-                'constraint' => 10
-            ],
+            /* 'book_fine' => [ */
+            /*     'type' => 'INT', */
+            /*     'constraint' => 10 */
+            /* ], */
             'sum_fine' => [
                 'type' => 'INT',
                 'constraint' => 10

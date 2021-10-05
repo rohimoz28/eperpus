@@ -21,8 +21,10 @@ class Restore extends BaseController
         $pager = 5;
         $data['sewa'] = $this->kembali->join('members', 'members.member_id = rents.member_id')
             ->join('books', 'books.book_id = rents.book_id')
+            ->join('book_fines', 'book_fines.book_fine_id  = rents.book_fine_id')
             ->where('book_status', 'Kembali')
             ->paginate($pager, 'pager');
+        /* dd($data); */
 
         /* $data['sewa'] = $this->kembali->getKembali()->paginate(5, 'pager'); */
         $data['pager'] = $this->kembali->pager;
@@ -68,6 +70,8 @@ class Restore extends BaseController
         $denda_buku = $this->dendaBuku->select('book_fine')->where('book_fine_id', $keterangan_buku)->first();
         // Ubah tipe data array menjadi integer
         $denda_buku_int = (int)$denda_buku['book_fine'];
+        /* dd($denda_buku_int); */
+
 
         // Hitung Total Denda
         $total_denda = $denda_telat + $denda_buku_int;
@@ -77,14 +81,13 @@ class Restore extends BaseController
         $data = [
             'date_return' => $tgl_kembali,
             'late' => $hari_telat,
-            'description' => $keterangan_buku,
+            'book_fine_id' => $keterangan_buku,
+            /* 'description' => $keterangan_buku, */
             'late_fine' => $denda_telat,
-            'book_fine' => $denda_buku,
+            /* 'book_fine' => $denda_buku, */
             'sum_fine' => $total_denda,
             'book_status' => $status_buku
         ];
-
-        /* dd($data); */
 
         $update = $this->kembali->updateKembali($data, $id);
 
