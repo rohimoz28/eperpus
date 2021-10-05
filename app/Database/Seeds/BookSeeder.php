@@ -34,30 +34,30 @@ class BookSeeder extends Seeder
         'book_date_publish' => '1886',
         'created_at' => Time::now()
       ],
-      /* [ */
-      /*     'book_title' => 'Petualangan Suku Apache', */
-      /*     'book_category' => 'Novel', */
-      /*     'book_writer' => 'Karl May', */
-      /*     'book_publisher' => 'Pustaka Arah', */
-      /*     'book_date_publish' => '1993', */
-      /*     'created_at' => Time::now() */
-      /* ], */
-      /* [ */
-      /*     'book_title' => 'Musashi', */
-      /*     'book_category' => 'Novel', */
-      /*     'book_writer' => 'Masashi Kishimoto', */
-      /*     'book_publisher' => 'Shonen Jump', */
-      /*     'book_date_publish' => '1890', */
-      /*     'created_at' => Time::now() */
-      /* ], */
-      /* [ */
-      /*     'book_title' => 'Tokyo Revengers', */
-      /*     'book_category' => 'Komik', */
-      /*     'book_writer' => 'Ken Wakui', */
-      /*     'book_publisher' => 'Shonen Jump', */
-      /*     'book_date_publish' => '2000', */
-      /*     'created_at' => Time::now() */
-      /* ], */
+      [
+        'book_title' => 'Petualangan Suku Apache',
+        'category_id' => 2,
+        'book_writer' => 'Karl May',
+        'book_publisher' => 'Pustaka Arah',
+        'book_date_publish' => '1993',
+        'created_at' => Time::now()
+      ],
+      [
+        'book_title' => 'Musashi',
+        'category_id' => 2,
+        'book_writer' => 'Masashi Kishimoto',
+        'book_publisher' => 'Shonen Jump',
+        'book_date_publish' => '1890',
+        'created_at' => Time::now()
+      ],
+      [
+        'book_title' => 'Tokyo Revengers',
+        'category_id' => 1,
+        'book_writer' => 'Ken Wakui',
+        'book_publisher' => 'Shonen Jump',
+        'book_date_publish' => '2000',
+        'created_at' => Time::now()
+      ]
     ];
 
     $this->db->table('books')->insertBatch($data);

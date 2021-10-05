@@ -37,8 +37,8 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>L / P</th>
-                  <th>Alamat</th>
-                  <th>Bergabung</th>
+                  <th>No Telp</th>
+                  <th>Email</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -48,9 +48,11 @@
                     <td><?= $no + 1 ?></td>
                     <td><?= $member['name'] ?></td>
                     <td><?= $member['gender'] ?></td>
-                    <td><?= $member['address'] ?></td>
-                    <td><?= date('Y M d', strtotime($member['created_at']))  ?></td>
+                    <td><?= $member['number'] ?></td>
+                    <td><?= $member['email'] ?></td>
+                    <!-- <td><?= date('Y M d', strtotime($member['created_at']))  ?></td> -->
                     <td>
+                      <a href="<?= base_url('member/detail/' . $member['member_id']) ?>" class="badge badge-pill badge-success">Detail</a>
                       <a href="<?= base_url('member/edit/' . $member['member_id']) ?>" class="badge badge-pill badge-info">Ubah</a>
                       <a href="<?= base_url('member/delete/' . $member['member_id']) ?>" onclick="return confirm('Yakin ingin hapus?')" class="badge badge-pill badge-danger">Hapus</a>
                     </td>

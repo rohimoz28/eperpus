@@ -10,7 +10,7 @@ class LateFine extends Seeder
     public function run()
     {
         $data = [
-            'rent_day' => 3,
+            'rent_day' => 5,
             'late_fine' => 1000,
             'created_at' => Time::now()
         ];

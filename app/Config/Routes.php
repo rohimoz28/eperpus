@@ -45,7 +45,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->post('member/store', 'Member::store');
   $routes->get('member/edit/(:num)', 'Member::edit/$1');
   $routes->put('member/update/(:num)', 'Member::update/$1');
-  /* $routes->patch('member/update/(:num)', 'Member::update/$1'); */
+  $routes->get('member/detail/(:num)', 'Member::detail/$1');
   $routes->get('member/delete/(:num)', 'Member::delete/$1');
 
   // Book

@@ -11,8 +11,13 @@ class BookFineSeeder extends Seeder
     {
         $data = [
             [
+                'description' => 'Baik',
+                'book_fine' => 0,
+                'created_at' => Time::now()
+            ],
+            [
                 'description' => 'Rusak',
-                'book_fine' => 30000,
+                'book_fine' => 25000,
                 'created_at' => Time::now()
             ],
             [

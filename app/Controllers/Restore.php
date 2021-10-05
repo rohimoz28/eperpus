@@ -23,6 +23,7 @@ class Restore extends BaseController
             ->join('books', 'books.book_id = rents.book_id')
             ->join('book_fines', 'book_fines.book_fine_id  = rents.book_fine_id')
             ->where('book_status', 'Kembali')
+            ->orderBy('date_return', 'ASC')
             ->paginate($pager, 'pager');
         /* dd($data); */
 
@@ -35,13 +36,11 @@ class Restore extends BaseController
 
     public function edit($id)
     {
-        /* $data['bookfines'] = $this->dendaBuku->findAll(); */
-        /* $data['restore'] = $this->kembali->editKembali($id); */
-
         $data = [
             'bookfines' => $this->dendaBuku->findAll(),
             'restore' => $this->kembali->editKembali($id)
         ];
+
         return view('restore/edit', $data);
     }
 
@@ -108,6 +107,7 @@ class Restore extends BaseController
 
         $data['sewa'] = $this->kembali->join('members', 'members.member_id = rents.member_id')
             ->join('books', 'books.book_id = rents.book_id')
+            ->join('book_fines', 'book_fines.book_fine_id=rents.book_fine_id')
             ->where('book_status', 'Kembali')
             ->findAll();
         // Sending data to view file

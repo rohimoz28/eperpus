@@ -1,11 +1,10 @@
-<?= $this->extend('layout/master-layout') ?>
+<?= $this->extend('layout/default') ?>
 
 <?= $this->section('content') ?>
 <div class="container">
-    <div class="row">
-        <div class="col-md-10 mt-3">
-            <h2 class="text-center">Halaman Detail Pengembalian</h2>
-        </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between col-md-12 my-3">
+        <h1 class="h3 mb-0 text-gray-800">Detail pengembalian buku</h1>
     </div>
     <div class="row">
         <div class="col-md-5 mt-3">

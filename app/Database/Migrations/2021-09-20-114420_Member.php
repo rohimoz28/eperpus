@@ -23,6 +23,14 @@ class Member extends Migration
         'type' => 'VARCHAR',
         'constraint' => 100
       ],
+      'number' => [
+        'type' => 'VARCHAR',
+        'constraint' => 100
+      ],
+      'email' => [
+        'type' => 'VARCHAR',
+        'constraint' => 100
+      ],
       'address' => [
         'type' => 'TEXT'
       ],

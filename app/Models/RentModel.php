@@ -56,6 +56,7 @@ class RentModel extends Model
             return $this->db->table('rents')
                 ->join('members', 'members.member_id=rents.member_id')
                 ->join('books', 'books.book_id=rents.book_id')
+                ->join('book_fines', 'book_fines.book_fine_id=rents.book_fine_id')
                 ->where('rent_id', $id)
                 ->get()->getRowArray();
         }
