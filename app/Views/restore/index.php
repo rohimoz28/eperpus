@@ -21,13 +21,14 @@
         </div>
       <?php endif; ?>
       <table class="table table-striped">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nama Anggota</th>
             <th scope="col">Judul Buku</th>
             <th scope="col">Keterangan Buku</th>
             <th scope="col">Total Denda</th>
+            <th scope="col">Tanggal Kembali</th>
             <th scope="col">Aksi</th>
           </tr>
         </thead>
@@ -39,6 +40,7 @@
               <td><?= $res['book_title'] ?></td>
               <td><?= $res['description'] ?></td>
               <td><?= $res['sum_fine'] ?></td>
+              <td><?= $res['date_return'] ?></td>
               <td>
                 <a href="<?= base_url('restore/showDetail/' . $res['rent_id']) ?>" class="badge badge-pill badge-success">Detail</a>
               </td>
