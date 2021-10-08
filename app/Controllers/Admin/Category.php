@@ -10,6 +10,10 @@ class Category extends BaseController
 {
   public function __construct()
   {
+    if (!session()->get('logged_in')) {
+      return redirect()->to(base_url('auth/login'));
+    }
+
     $this->categories = new CategoryModel();
   }
 

@@ -63,12 +63,10 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('restore/generate-pdf', 'Restore::generatePdf');
   // Page
   $routes->get('page', 'Page::index');
-  // Master Category
-  $routes->get('category', 'Admin\Category::index');
-  $routes->post('category', 'Admin\Category::store');
-  $routes->get('category/edit/(:num)', 'Admin\Category::edit/$1');
-  $routes->put('category/(:num)', 'Admin\Category::update/$1');
-  $routes->get('category/delete/(:num)', 'Admin\Category::delete/$1');
+});
+
+// Menu Admin
+$routes->group('', ['filter' => 'admin'], function ($routes) {
   // Latefine
   $routes->get('latefine', 'Admin\Latefine::index');
   $routes->get('latefine/edit', 'Admin\Latefine::edit');
@@ -80,7 +78,15 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('bookfine/delete/(:num)', 'Admin\Bookfine::delete/$1');
   $routes->get('bookfine/edit/(:num)', 'Admin\Bookfine::edit/$1');
   $routes->put('bookfine/update/(:num)', 'Admin\Bookfine::update/$1');
+  // Category
+  $routes->get('category', 'Admin\Category::index');
+  $routes->post('category', 'Admin\Category::store');
+  $routes->get('category/edit/(:num)', 'Admin\Category::edit/$1');
+  $routes->put('category/(:num)', 'Admin\Category::update/$1');
+  $routes->get('category/delete/(:num)', 'Admin\Category::delete/$1');
 });
+
+
 
 /*
  * --------------------------------------------------------------------

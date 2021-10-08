@@ -51,6 +51,11 @@ class Auth extends BaseController
     }
   }
 
+  public function error()
+  {
+    echo view('auth/error');
+  }
+
   public function logout()
   {
     $session = session();
