@@ -1,4 +1,10 @@
 <?php $this->extend('layout/default') ?>
+<?php $this->section('css') ?>
+<!-- CSS Boostrap 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
+<!-- CSS Bootstrap Datepicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
+<?php $this->endSection() ?>
 
 <?php $this->section('content') ?>
 <div class="container">
@@ -44,7 +50,7 @@
         </div>
         <div class="form-group">
           <label for="th_terbit">Tahun Terbit</label>
-          <input type="text" class="form-control" name="th_terbit" id="th_terbit">
+          <input type="text" class="form-control datepicker col-md-6" name="th_terbit" id="tanggal_lahir" placeholder="   Select Date">
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="<?= base_url('book') ?>" class="btn btn-warning">Kembali</a>
@@ -52,4 +58,14 @@
     </div>
   </div>
 </div>
+<?php $this->endSection() ?>
+
+<?php $this->section('js') ?>
+<!-- Javascript Bootstrap Datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
+</script>
+
+<script type="text/javascript">
+  $('.datepicker').datepicker();
+</script>
 <?php $this->endSection() ?>
