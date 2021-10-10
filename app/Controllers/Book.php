@@ -38,8 +38,8 @@ class Book extends BaseController
     $penulis = $this->request->getPost('penulis');
     $penerbit = $this->request->getPost('penerbit');
     $th_terbit = $this->request->getPost('th_terbit');
+    $gambar = $this->request->getFile('gambar');
 
-    /* dd($kategori); */
 
     $isValidated = $this->validate([
       'judul' => [
@@ -60,12 +60,20 @@ class Book extends BaseController
     if (!$isValidated) {
       return redirect()->back()->withInput();
     } else {
+      if ($gambar->getError() == 4) {
+        $gambarName = 'default.jpeg';
+      } else {
+        $gambarName = $gambar->getName();
+        $gambar->move('img/upload', $gambarName);
+      }
+      /* dd($gambarName); */
       $data = [
         'book_title' => $judul,
+        'book_image' => $gambarName,
         'category_id' => $kategori,
         'book_writer' => $penulis,
         'book_publisher' => $penerbit,
-        'book_date_publish' => $th_terbit
+        'book_date_publish' => $th_terbit,
       ];
 
       /* dd($data); */

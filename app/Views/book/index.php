@@ -36,6 +36,7 @@
               <thead>
                 <tr>
                   <th>No</th>
+                  <th>Cover</th>
                   <th>Judul buku</th>
                   <th>Penulis</th>
                   <th>Penerbit</th>
@@ -47,6 +48,7 @@
                 <?php foreach ($books as $no => $member) : ?>
                   <tr>
                     <td><?= $no + 1 ?></td>
+                    <td><img src="/img/upload/<?= $member['book_image'] ?>" style="width: 75px;"></td>
                     <td><?= $member['book_title'] ?></td>
                     <td><?= $member['book_writer'] ?></td>
                     <td><?= $member['book_publisher'] ?></td>
@@ -77,4 +79,14 @@
 
       <!-- Page level custom scripts -->
       <script src="<?= base_url('assets/sbadmin') ?>/js/demo/datatables-demo.js"></script>
+      <script>
+        function previewImageFile(input, id) {
+          var output = document.getElementById('preview-image');
+          output.removeAttribute("class");
+          output.src = URL.createObjectURL(event.target.files[0]);
+          output.onload = function() {
+            URL.revokeObjectURL(output.src)
+          }
+        }
+      </script>
       <?php $this->endSection() ?>

@@ -12,6 +12,7 @@ class BookSeeder extends Seeder
     $data = [
       [
         'book_title' => 'Naruto',
+        'book_image' => 'ganyu.jpg',
         'category_id' => 1,
         'book_writer' => 'Masashi Kishimoto',
         'book_publisher' => 'Shonen Jump',
@@ -20,6 +21,7 @@ class BookSeeder extends Seeder
       ],
       [
         'book_title' => 'One Piece',
+        'book_image' => 'default.jpg',
         'category_id' => 1,
         'book_writer' => 'Eiichiro Oda',
         'book_publisher' => 'Shonen Jump',
@@ -28,6 +30,7 @@ class BookSeeder extends Seeder
       ],
       [
         'book_title' => 'Sherlock Holmes',
+        'book_image' => 'default.jpg',
         'category_id' => 2,
         'book_writer' => 'Sir Arthur Conan Doyle',
         'book_publisher' => 'Times',
@@ -36,6 +39,7 @@ class BookSeeder extends Seeder
       ],
       [
         'book_title' => 'Petualangan Suku Apache',
+        'book_image' => 'default.jpg',
         'category_id' => 2,
         'book_writer' => 'Karl May',
         'book_publisher' => 'Pustaka Arah',
@@ -44,6 +48,7 @@ class BookSeeder extends Seeder
       ],
       [
         'book_title' => 'Musashi',
+        'book_image' => 'default.jpg',
         'category_id' => 2,
         'book_writer' => 'Masashi Kishimoto',
         'book_publisher' => 'Shonen Jump',
@@ -52,6 +57,7 @@ class BookSeeder extends Seeder
       ],
       [
         'book_title' => 'Tokyo Revengers',
+        'book_image' => 'default.jpg',
         'category_id' => 1,
         'book_writer' => 'Ken Wakui',
         'book_publisher' => 'Shonen Jump',

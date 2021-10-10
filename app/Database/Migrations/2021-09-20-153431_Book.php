@@ -19,6 +19,10 @@ class Book extends Migration
         'type'       => 'VARCHAR',
         'constraint' => '100',
       ],
+      'book_image'       => [
+        'type'       => 'VARCHAR',
+        'constraint' => '100',
+      ],
       'category_id' => [
         'type' => 'INT',
         'constraint' => 5,

@@ -1,5 +1,18 @@
 <?php $this->extend('layout/default') ?>
+
+<!-- Add CSS -->
 <?php $this->section('css') ?>
+<style>
+  .hideImage {
+    display: none;
+  }
+
+  #preview-image {
+    margin-top: 10px;
+    width: 200px;
+    height: 200px;
+  }
+</style>
 <!-- CSS Boostrap 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
 <!-- CSS Bootstrap Datepicker -->
@@ -15,7 +28,7 @@
   <div class="row">
     <div class="col-md-5 my-3">
       <?php $validation = \Config\Services::validation(); ?>
-      <form action="<?= base_url('/book/store') ?>" method="POST">
+      <form action="<?= base_url('/book/store') ?>" method="POST" enctype="multipart/form-data">
         <?= csrf_field() ?>
         <div class="form-group">
           <label for="judul">Judul Buku</label>
@@ -37,7 +50,7 @@
         </div>
         <div class="form-group">
           <label for="penulis">Penulis</label>
-          <input type="text" class="form-control <?= ($validation->hasError('penulis') ? 'is-invalid' : '') ?>"" name=" penulis" id="penulis" value="<?= old('penulis') ?>">
+          <input type="text" class="form-control <?= ($validation->hasError('penulis') ? 'is-invalid' : '') ?>" name=" penulis" id="penulis" value="<?= old('penulis') ?>">
           <?php if ($validation->getError('penulis')) : ?>
             <div id="penulis" class="invalid-feedback">
               <?= $validation->getError('penulis') ?>
@@ -50,7 +63,18 @@
         </div>
         <div class="form-group">
           <label for="th_terbit">Tahun Terbit</label>
-          <input type="text" class="form-control datepicker col-md-6" name="th_terbit" id="tanggal_lahir" placeholder="   Select Date">
+          <input type="text" class="form-control datepicker col-md-7" name="th_terbit" id="tanggal_lahir" placeholder="   Select Date">
+        </div>
+        <!-- <div class="form-group">
+          <div class="custom-file mt-2">
+            <input type="file" class="custom-file-input" name="gambar" id="preview-image" onchange="previewImg()">
+            <label class="custom-file-label" for="customFile">Pilih gambar</label>
+          </div>
+        </div> -->
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" name="gambar" class="form-control col-md-7" id="image" onchange="previewImageFile(this);" accept=".png, .jpg, .jpeg" />
+          <img src="" alt="Image preview" id="preview-image" class="hideImage">
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="<?= base_url('book') ?>" class="btn btn-warning">Kembali</a>
@@ -60,7 +84,18 @@
 </div>
 <?php $this->endSection() ?>
 
+<!-- Add Javascript -->
 <?php $this->section('js') ?>
+<script>
+  function previewImageFile(input, id) {
+    var output = document.getElementById('preview-image');
+    output.removeAttribute("class");
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src)
+    }
+  }
+</script>
 <!-- Javascript Bootstrap Datepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
 </script>

@@ -10,7 +10,7 @@ class BookModel extends Model
   protected $table                = 'books';
   protected $primaryKey           = 'book_id';
   protected $returnType           = 'array';
-  protected $allowedFields        = ['book_title', 'category_id', 'book_writer', 'book_publisher', 'book_date_publish'];
+  protected $allowedFields        = ['book_title', 'book_image', 'category_id', 'book_writer', 'book_publisher', 'book_date_publish'];
 
   public function getBook($id = false)
   {
