@@ -23,7 +23,7 @@ class Book extends Migration
         'type'       => 'VARCHAR',
         'constraint' => '100',
       ],
-      'category_id' => [
+      'id_category' => [
         'type' => 'INT',
         'constraint' => 5,
       ],

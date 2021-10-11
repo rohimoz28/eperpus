@@ -27,8 +27,9 @@ Ubah Buku
         <div class="form-group">
           <label for="kategori">Kategori</label>
           <select class="form-control" name="kategori" id="kategori">
-            <option <?php if ($book['book_category'] == 'Komik') echo 'selected' ?> value="Komik">Komik</option>
-            <option <?php if ($book['book_category'] == 'Novel') echo 'Selected' ?> value="Novel">Novel</option>
+            <?php foreach ($category as $data) : ?>
+              <option <?= ($book['id_category'] == $data['category_id'] ? 'selected' : '') ?> value="<?= $data['category_id'] ?>"><?= $data['category_name'] ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="form-group">

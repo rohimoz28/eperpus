@@ -93,6 +93,7 @@ class Book extends BaseController
     // $data['book'] = $this->book->getBook($id);
     $data = [
       'book' => $this->book->getBook($id),
+      'category' => $this->category->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('book/edit', $data);
@@ -128,11 +129,13 @@ class Book extends BaseController
 
     $data = [
       'book_title' => $judul,
-      'book_category' => $kategori,
+      'id_category' => $kategori,
       'book_writer' => $penulis,
       'book_publisher' => $penerbit,
       'book_date_publish' => $th_terbit
     ];
+
+    /* dd($data); */
 
     $update = $this->book->updateBook($data, $id);
 
