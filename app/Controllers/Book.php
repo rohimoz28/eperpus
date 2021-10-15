@@ -39,7 +39,7 @@ class Book extends BaseController
     $penerbit = $this->request->getPost('penerbit');
     $th_terbit = $this->request->getPost('th_terbit');
     $gambar = $this->request->getFile('gambar');
-
+    /* dd($gambar); */
 
     $isValidated = $this->validate([
       'judul' => [
@@ -70,7 +70,7 @@ class Book extends BaseController
       $data = [
         'book_title' => $judul,
         'book_image' => $gambarName,
-        'category_id' => $kategori,
+        'id_category' => $kategori,
         'book_writer' => $penulis,
         'book_publisher' => $penerbit,
         'book_date_publish' => $th_terbit,
@@ -78,7 +78,6 @@ class Book extends BaseController
 
       /* dd($data); */
 
-      /* $save = $this->book->insertBook($data); */
       $save = $this->book->insert($data);
 
       if ($save) {
@@ -106,6 +105,8 @@ class Book extends BaseController
     $penulis = $this->request->getPost('penulis');
     $penerbit = $this->request->getPost('penerbit');
     $th_terbit = $this->request->getPost('th_terbit');
+    $gambar = $this->request->getFile('gambar');
+    /* dd($gambar); */
 
     $isValidated = $this->validate([
       'judul' => [
@@ -120,28 +121,42 @@ class Book extends BaseController
         'errors' => [
           'required' => 'Kolom penulis harus diisi',
         ]
+      ],
+      'gambar' => [
+        'rules' => 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,2056]',
+        'errors' => [
+          'uploaded' => 'Tidak ada file yg di upload',
+          'mime_in' => 'Format gambar jpg, jpeg, atau png',
+          'max_size' => 'Ukuran gambar tidak lebih dari 2MB'
+        ]
       ]
+
     ]);
 
+    $user = $this->book->getBook($id);
     if (!$isValidated) {
       return redirect()->back()->withInput();
-    }
+    } else {
+      if ($gambar->getName() != $user['book_image']) {
+        $gambarNama = $gambar->getRandomName();
+        $gambar->move(WRITEPATH . '../public/img/upload', $gambarNama);
 
-    $data = [
-      'book_title' => $judul,
-      'id_category' => $kategori,
-      'book_writer' => $penulis,
-      'book_publisher' => $penerbit,
-      'book_date_publish' => $th_terbit
-    ];
+        $data = [
+          'book_title' => $judul,
+          'id_category' => $kategori,
+          'book_writer' => $penulis,
+          'book_publisher' => $penerbit,
+          'book_date_publish' => $th_terbit,
+          'book_image' => $gambarNama,
+        ];
 
-    /* dd($data); */
+        $update = $this->book->updateBook($data, $id);
 
-    $update = $this->book->updateBook($data, $id);
-
-    if ($update) {
-      session()->setFlashdata('success', 'diubah');
-      return redirect()->to(base_url('book'));
+        if ($update) {
+          session()->setFlashdata('success', 'diubah');
+          return redirect()->to(base_url('book'));
+        }
+      }
     }
   }
 

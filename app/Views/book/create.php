@@ -62,21 +62,23 @@
         </div>
         <div class="form-group">
           <label for="th_terbit">Tahun Terbit</label>
-          <input type="text" class="form-control datepicker col-md-7" name="th_terbit" id="tanggal_lahir" placeholder="   Select Date">
+          <input type="text" class="form-control" name="th_terbit">
         </div>
-        <!-- <div class="form-group">
-          <div class="custom-file mt-2">
-            <input type="file" class="custom-file-input" name="gambar" id="preview-image" onchange="previewImg()">
-            <label class="custom-file-label" for="customFile">Pilih gambar</label>
+        <div class="row mb-2">
+          <div class="col-sm-3">
+            <img src="<?= base_url('img/upload/default.jpg') ?>" id="preview" class="img-thumbnail">
           </div>
-        </div> -->
-        <div class="form-group">
-          <label for="image">Image</label>
-          <input type="file" name="gambar" class="form-control col-md-7" id="image" onchange="previewImageFile(this);" accept=".png, .jpg, .jpeg" />
-          <img src="" alt="Image preview" id="preview-image" class="hideImage">
+          <div class="col-sm-9">
+            <input type="file" class="custom-file-input" name="gambar" id="image">
+            <label class="custom-file-label" for="image">Choose file</label>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="<?= base_url('book') ?>" class="btn btn-warning">Kembali</a>
+        <div class=" form-group">
+          <div class="d-flex flex-row ml-0">
+            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+            <a href="<?= base_url('book') ?>" class="btn btn-warning">Kembali</a>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -86,20 +88,13 @@
 <!-- Add Javascript -->
 <?php $this->section('js') ?>
 <script>
-  function previewImageFile(input, id) {
-    var output = document.getElementById('preview-image');
-    output.removeAttribute("class");
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src)
-    }
-  }
+  $('.custom-file-input').on('change', function() {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+  });
 </script>
 <!-- Javascript Bootstrap Datepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
 </script>
 
-<script type="text/javascript">
-  $('.datepicker').datepicker();
-</script>
 <?php $this->endSection() ?>

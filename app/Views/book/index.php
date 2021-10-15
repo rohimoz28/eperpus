@@ -54,8 +54,8 @@
                     <td><?= $member['book_publisher'] ?></td>
                     <td><?= $member['book_date_publish'] ?></td>
                     <td>
-                      <a href="<?= base_url('book/edit/' . $member['book_id']) ?>" class="badge badge-pill badge-info">Ubah</a>
-                      <a href="<?= base_url('book/delete/' . $member['book_id']) ?>" onclick="return confirm('Yakin ingin hapus?')" class="badge badge-pill badge-danger">Hapus</a>
+                      <a href="<?= base_url('book/edit/' . $member['book_id']) ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit" title="Ubah"></i></a>
+                      <a href="<?= base_url('book/delete/' . $member['book_id']) ?>" onclick="return confirm('Yakin ingin hapus?')" class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash-alt"></i></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

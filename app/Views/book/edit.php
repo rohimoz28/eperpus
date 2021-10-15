@@ -1,7 +1,8 @@
 <?php $this->extend('layout/default') ?>
 
-<?php $this->section('title') ?>
-Ubah Buku
+
+<!-- Add CSS -->
+<?php $this->section('css') ?>
 <?php $this->endSection() ?>
 
 <?php $this->section('content') ?>
@@ -12,7 +13,12 @@ Ubah Buku
   </div>
   <div class="row">
     <div class="col-md-5 my-3">
-      <form action="<?= base_url('/book/update/' . $book['book_id']) ?>" method="POST">
+      <!-- Validation -->
+      <?php $validation = \Config\Services::validation(); ?>
+      <?= $validation->listErrors() ?>
+
+      <!-- Form -->
+      <form action="<?= base_url('/book/update/' . $book['book_id']) ?>" method="POST" enctype="multipart/form-data">
         <?= csrf_field() ?>
         <input type="hidden" value="<?= $book['book_id'] ?>">
         <div class="form-group">
@@ -49,10 +55,54 @@ Ubah Buku
           <label for="th_terbit">Tahun Terbit</label>
           <input type="text" class="form-control" name="th_terbit" id="th_terbit" value="<?= $book['book_date_publish'] ?>">
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="<?= base_url('book') ?>" class="btn btn-warning">Kembali</a>
+        <!-- <div class="row mb-2">
+          <div class="col-sm-3">
+            <img src="<?= base_url('img/upload/' . $book['book_image']); ?>" class="img-thumbnail">
+          </div>
+          <div class="col-sm-9">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="image" name="gambar">
+              <label class="custom-file-label" for="image">Choose file</label>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="row mb-2">
+          <div class="col-sm-3">
+            <img src="<?= base_url('img/upload/' . $book['book_image']) ?>" class="img-thumbnail">
+          </div>
+          <div class="col-sm-9">
+            <input type="file" class="custom-file-input" name="gambar" id="image" value="<?= $book['book_image'] ?>">
+            <label class="custom-file-label" for="image">Choose file</label>
+          </div>
+          <!-- <input type="file" name="gambar"> -->
+        </div>
+        <div class=" form-group">
+          <div class="d-flex flex-row ml-0">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="<?= base_url('book') ?>" class="btn btn-warning">Kembali</a>
+          </div>
+        </div>
       </form>
     </div>
   </div>
 </div>
+<?php $this->endSection() ?>
+<!-- Add Javascript -->
+<?php $this->section('js') ?>
+<!-- Javascript Bootstrap Datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
+</script>
+
+<script type="text/javascript">
+  /* $('.datepicker').datepicker(); */
+</script>
+
+<script>
+  $('.custom-file-input').on('change', function() {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+  });
+</script>
+
 <?php $this->endSection() ?>
