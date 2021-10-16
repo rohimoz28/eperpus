@@ -89,7 +89,6 @@ class Book extends BaseController
 
   public function edit($id)
   {
-    // $data['book'] = $this->book->getBook($id);
     $data = [
       'book' => $this->book->getBook($id),
       'category' => $this->category->findAll(),
@@ -122,25 +121,18 @@ class Book extends BaseController
           'required' => 'Kolom penulis harus diisi',
         ]
       ],
-      'gambar' => [
-        'rules' => 'uploaded[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,2056]',
-        'errors' => [
-          'uploaded' => 'Tidak ada file yg di upload',
-          'mime_in' => 'Format gambar jpg, jpeg, atau png',
-          'max_size' => 'Ukuran gambar tidak lebih dari 2MB'
-        ]
-      ]
 
     ]);
 
     $user = $this->book->getBook($id);
+
     if (!$isValidated) {
       return redirect()->back()->withInput();
     } else {
-      if ($gambar->getName() != $user['book_image']) {
-        $gambarNama = $gambar->getRandomName();
-        $gambar->move(WRITEPATH . '../public/img/upload', $gambarNama);
-
+      /* echo 'tidak masuk'; */
+      if ($gambar->getError() == 4) {
+        $gambarNama = $user['book_image'];
+        /* echo 'tidak ada gambar yg di upload'; */
         $data = [
           'book_title' => $judul,
           'id_category' => $kategori,
@@ -149,12 +141,54 @@ class Book extends BaseController
           'book_date_publish' => $th_terbit,
           'book_image' => $gambarNama,
         ];
-
         $update = $this->book->updateBook($data, $id);
 
         if ($update) {
           session()->setFlashdata('success', 'diubah');
           return redirect()->to(base_url('book'));
+        }
+      } else {
+        $validGambar = $this->validate([
+          'gambar' => [
+            'rules' => 'mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,2048]',
+            'errors' => [
+              'mime_in' => 'Format gambar harus jpg, jpeg, atau png',
+              'max_size' => 'Ukuran gambar tidak boleh lebih dari 2MB'
+            ]
+          ]
+        ]);
+
+        if (!$validGambar) {
+          /* echo 'gambar tidak valid'; */
+          return redirect()->back()->withInput();
+        } else {
+          // Gambar baru valid dan siap di upload
+          $gambarLama = $user['book_image'];
+
+          if ($gambar->getName() == 'default.jpg') {
+            $gambarNama = 'default.jpg';
+            $gambar->move(WRITEPATH . '../public/img/upload', $gambarNama);
+          } else {
+            $path = '../public/img/upload/';
+            unlink($path . $gambarLama);
+            $gambarNama = $gambar->getRandomName();
+            $gambar->move(WRITEPATH . '../public/img/upload', $gambarNama);
+          }
+
+          $data = [
+            'book_title' => $judul,
+            'id_category' => $kategori,
+            'book_writer' => $penulis,
+            'book_publisher' => $penerbit,
+            'book_date_publish' => $th_terbit,
+            'book_image' => $gambarNama,
+          ];
+          $update = $this->book->updateBook($data, $id);
+
+          if ($update) {
+            session()->setFlashdata('success', 'diubah');
+            return redirect()->to(base_url('book'));
+          }
         }
       }
     }

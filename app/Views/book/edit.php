@@ -15,7 +15,11 @@
     <div class="col-md-5 my-3">
       <!-- Validation -->
       <?php $validation = \Config\Services::validation(); ?>
-      <?= $validation->listErrors() ?>
+      <?php if ($validation->getErrors()) : ?>
+        <div class="alert alert-danger" role="alert">
+          <?= $validation->listErrors() ?>
+        </div>
+      <?php endif; ?>
 
       <!-- Form -->
       <form action="<?= base_url('/book/update/' . $book['book_id']) ?>" method="POST" enctype="multipart/form-data">
