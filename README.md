@@ -1,63 +1,29 @@
-# CodeIgniter 4 Application Starter
+# Aplikasi EPerpus
+---
+Aplikasi Eperpus dibuat menggunakan bahasa pemrograman PHP dengan framework Codeigniter 4 dan bootstrap 4.5 
 
-## What is CodeIgniter?
+## Fitur
+---
+- CRUD buku
+- CRUD anggota
+- Denda buku
+- Print to Pdf & Excel
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+## Screenshot
+---
+![halaman buku](https://i.ibb.co/B6gj6yt/book.png)
+![halaman anggota](https://i.ibb.co/zHs0vCh/anggota.png)
+![halaman pinjam buku](https://i.ibb.co/XC9wBZF/tambah-pinjam.png)
+![halaman pinjam](https://i.ibb.co/Yj05MT6/pinjam.png)
+![halaman kembali](https://i.ibb.co/BnPqbxq/kembali.png)
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Instalasi
+---
+1. git clone `https://github.com/rohimoz28/eperpus.git`
+2. `php spark migrate --all`
+3. Seeder semua file di direktori `app/Database/Seeds`
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
-
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
-
-## Installation & updates
-
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
-
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
-
-## Setup
-
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+## Sumber
+---
+- [SBAdmin](https://startbootstrap.com/theme/sb-admin-2)
+- [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)

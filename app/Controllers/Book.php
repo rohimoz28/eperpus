@@ -170,7 +170,7 @@ class Book extends BaseController
             $gambar->move(WRITEPATH . '../public/img/upload', $gambarNama);
           } else {
             $path = '../public/img/upload/';
-            unlink($path . $gambarLama);
+            /* unlink($path . $gambarLama); */
             $gambarNama = $gambar->getRandomName();
             $gambar->move(WRITEPATH . '../public/img/upload', $gambarNama);
           }
