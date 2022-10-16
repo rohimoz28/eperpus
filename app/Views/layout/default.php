@@ -69,12 +69,6 @@
           </div>
         </li>
 
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-pen"></i>
-            <span>Laporan</span></a>
-        </li> -->
-
         <!-- Divider -->
         <hr class="sidebar-divider">
       <?php endif ?>
@@ -83,7 +77,6 @@
       <div class="sidebar-heading">
         Menu
       </div>
-
 
       <!-- Nav Item - Menu -->
       <li class="nav-item">
