@@ -1,11 +1,23 @@
-### Change View Template
+### Change View Template ###
 
 1. Authentication
 - login | done
 
 2. Librarian page
-- dashboard
-- pinjam
-- kembali
-- book
-- anggota
+- dashboard | done
+- pinjam | done
+- kembali | done
+- book | done
+- anggota | done
+
+
+
+
+### PR ###
+
+--- Ikhtisar @ admin - dashboard/index ---
+--- ROLE ---
+1. Library
+    a. Admin    | 1
+    b. User     | 2
+2. Member       | 3
