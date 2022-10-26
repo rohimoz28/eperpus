@@ -80,7 +80,8 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
   $routes->put('bookfine/update/(:num)', 'Admin\Bookfine::update/$1');
   // Category
   $routes->get('category', 'Admin\Category::index');
-  $routes->post('category', 'Admin\Category::store');
+  $routes->get('category/create', 'Admin\Category::create');
+  $routes->post('category/create', 'Admin\Category::store');
   $routes->get('category/edit/(:num)', 'Admin\Category::edit/$1');
   $routes->put('category/(:num)', 'Admin\Category::update/$1');
   $routes->get('category/delete/(:num)', 'Admin\Category::delete/$1');

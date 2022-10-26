@@ -23,7 +23,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="<?= base_url('bookfine') ?>">Denda Buku</a></li>
                         <li><a class="nav-link" href="<?= base_url('category') ?>">Kategori Buku</a></li>
-                        <li><a class="nav-link" href="<?= base_url('bookfine') ?>">Denda Buku</a></li>
+                        <li><a class="nav-link" href="<?= base_url('latefine') ?>">Denda Telat</a></li>
                     </ul>
                 </li>
             <?php endif ?>

@@ -20,7 +20,12 @@ class Category extends BaseController
   public function index()
   {
     $data['categories'] = $this->categories->findAll();
-    return view('category/index', $data);
+    return view('master/category/index', $data);
+  }
+
+  public function create()
+  {
+    return view('master/category/create');
   }
 
   public function store()
@@ -43,7 +48,7 @@ class Category extends BaseController
   {
     $data['category'] = $this->categories->where('category_id', $id)->first();
 
-    return view('category/edit', $data);
+    return view('master/category/edit', $data);
   }
 
   public function update($id)

@@ -15,7 +15,7 @@ class Latefine extends BaseController
     public function index()
     {
         $data['latefine'] = $this->latefine->findAll();
-        return view('late/latefine/index', $data);
+        return view('master/latefine/index', $data);
     }
 
     public function edit()
@@ -26,7 +26,7 @@ class Latefine extends BaseController
             'validation' => \Config\Services::validation()
         ];
 
-        return view('late/latefine/edit', $data);
+        return view('master/latefine/edit', $data);
     }
 
     public function update($id)

@@ -17,13 +17,13 @@ class Bookfine extends BaseController
     public function index()
     {
         $data['bookfines'] = $this->bookfines->findAll();
-        return view('late/bookfine/index', $data);
+        return view('master/bookfine/index', $data);
     }
 
     public function create()
     {
         $data['validation'] = \Config\Services::validation();
-        return view('late/bookfine/create', $data);
+        return view('master/bookfine/create', $data);
     }
 
     public function store()
@@ -71,7 +71,7 @@ class Bookfine extends BaseController
             'validation' => \Config\Services::validation()
         ];
 
-        return view('late/bookfine/edit', $data);
+        return view('master/bookfine/edit', $data);
     }
 
     public function update($id)

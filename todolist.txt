@@ -1,8 +1,5 @@
 ### Change View Template ###
 
-1. Module pinjam
-2. Module anggota
-    - form tambah anggota kurang field nomer telp dan email
-3. Module buku
-    - ubah form tambah data buku dari form edit buku
 4. Master data
+    - menu kategori
+        -> tambahkan button kembali pada: form tambah kategori dan ubah kategori
