@@ -23,16 +23,16 @@ class Member extends BaseController
     echo view('member/index', $data);
   }
 
-  public function detail($id)
-  {
-    $data['detail'] = $this->member->where('member_id', $id)->first();
-    return view('member/detail', $data);
-  }
-
   public function create()
   {
     $data['validation'] = \Config\Services::validation();
     return view('member/create', $data);
+  }
+
+  public function detail($id)
+  {
+    $data['detail'] = $this->member->where('member_id', $id)->first();
+    return view('member/detail', $data);
   }
 
   public function store()
@@ -41,12 +41,14 @@ class Member extends BaseController
     $jkel = $this->request->getPost('jkel');
     // $tgl_daftar = date('d M Y');
     $alamat = $this->request->getPost('alamat');
+    $no_telp = $this->request->getPost('no_telp');
+    $email = $this->request->getPost('email');
 
     $isValidated = $this->validate([
       'nama' => [
         'rules' => 'required|trim|min_length[3]|max_length[30]',
         'errors' => [
-          'required' => 'Kolom nama harus diisi',
+          'required' => 'Nama harus diisi',
           'min_length' => 'Tidak boleh kurang dari 3 huruf',
           'max_length' => 'Tidak boleh lebih dari 30 huruf'
         ]
@@ -54,8 +56,21 @@ class Member extends BaseController
       'alamat' => [
         'rules' => 'required|trim|min_length[10]',
         'errors' => [
-          'required' => 'Kolom alamat harus diisi',
+          'required' => 'Alamat harus diisi',
           'min_length' => 'Tidak boleh kurang dari 10 huruf'
+        ]
+      ],
+      'no_telp' => [
+        'rules' => 'required|trim',
+        'errors' => [
+          'required' => 'Nomer Telepon harus diisi',
+        ]
+      ],
+      'email' => [
+        'rules' => 'required|trim|valid_email',
+        'errors' => [
+          'required' => 'Email harus diisi',
+          'valid_email' => 'Alamat email tidak valid'
         ]
       ]
     ]);
@@ -67,6 +82,8 @@ class Member extends BaseController
         'name' => $nama,
         'gender' => $jkel,
         'address' => $alamat,
+        'number' => $no_telp,
+        'email' => $email,
         // 'tgl_daftar' => $tgl_daftar
       ];
 
@@ -94,6 +111,8 @@ class Member extends BaseController
     $nama = $this->request->getPost('nama');
     $jkel = $this->request->getPost('jkel');
     $alamat = $this->request->getPost('alamat');
+    $no_telp = $this->request->getPost('no_telp');
+    $email = $this->request->getPost('email');
 
     $isValidated = $this->validate([
       'nama' => [
@@ -110,6 +129,19 @@ class Member extends BaseController
           'required' => 'Kolom alamat harus diisi',
           'min_length' => 'Tidak boleh kurang dari 10 huruf'
         ]
+      ],
+      'no_telp' => [
+        'rules' => 'required|trim',
+        'errors' => [
+          'required' => 'Nomer Telepon harus diisi',
+        ]
+      ],
+      'email' => [
+        'rules' => 'required|trim|valid_email',
+        'errors' => [
+          'required' => 'Email harus diisi',
+          'valid_email' => 'Alamat email tidak valid'
+        ]
       ]
     ]);
 
@@ -121,6 +153,8 @@ class Member extends BaseController
       'name' => $nama,
       'gender' => $jkel,
       'address' => $alamat,
+      'number' => $no_telp,
+      'email' => $email,
       // 'tgl_daftar' => $tgl_daftar
     ];
 

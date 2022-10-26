@@ -51,6 +51,24 @@
                       </div>
                     <?php endif; ?>
                   </div>
+                  <div class="form-group">
+                    <label for="no_telp">Nomer Telepon</label>
+                    <input type="text" class="form-control <?= ($validation->hasError('no_telp') ? 'is-invalid' : '') ?>" name="no_telp" id="no_telp" value="<?= (old('no_telp') ? old('no_telp') : $member['number']) ?>">
+                    <?php if ($validation->getError('no_telp')) : ?>
+                      <div id="no_telp" class="invalid-feedback">
+                        <?= $validation->getError('no_telp') ?>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control <?= ($validation->hasError('email') ? 'is-invalid' : '') ?>" name="email" id="email" value="<?= (old('email') ? old('email') : $member['email']) ?>">
+                    <?php if ($validation->getError('email')) : ?>
+                      <div id="email" class="invalid-feedback">
+                        <?= $validation->getError('email') ?>
+                      </div>
+                    <?php endif; ?>
+                  </div>
                   <button type="submit" class="btn btn-primary">Simpan</button>
                   <a href="<?= base_url('member') ?>" class="btn btn-warning">Kembali</a>
                 </form>
