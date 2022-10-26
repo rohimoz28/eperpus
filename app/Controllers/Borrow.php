@@ -26,7 +26,7 @@ class Borrow extends BaseController
             ->join('books', 'books.book_id = rents.book_id')
             ->where('book_status', 'Pinjam')
             ->paginate($pager, 'pager');
-        /* dd($data); */
+
         $data['pager'] = $this->sewa->pager;
         $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
 

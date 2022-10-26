@@ -1,23 +1,8 @@
 ### Change View Template ###
 
-1. Authentication
-- login | done
-
-2. Librarian page
-- dashboard | done
-- pinjam | done
-- kembali | done
-- book | done
-- anggota | done
-
-
-
-
-### PR ###
-
---- Ikhtisar @ admin - dashboard/index ---
---- ROLE ---
-1. Library
-    a. Admin    | 1
-    b. User     | 2
-2. Member       | 3
+1. Module pinjam
+2. Module anggota
+    - form tambah anggota kurang field nomer telp dan email
+3. Module buku
+    - ubah form tambah data buku dari form edit buku
+4. Master data
