@@ -18,7 +18,7 @@
               <h4>Anggota</h4>
             </div>
             <div class="card-body">
-              10
+              <?= $member ?>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
               <h4>Buku</h4>
             </div>
             <div class="card-body">
-              42
+              <?= $book ?>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
               <h4>Di Pinjam</h4>
             </div>
             <div class="card-body">
-              5
+              <?= $borrowed ?>
             </div>
           </div>
         </div>

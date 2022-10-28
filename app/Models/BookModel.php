@@ -21,6 +21,13 @@ class BookModel extends Model
     }
   }
 
+  public function countBook()
+  {
+    return $this->table('books')
+      ->select('id')
+      ->countall();
+  }
+
   public function insertBook($data)
   {
     return $this->table('books')->insert($data);

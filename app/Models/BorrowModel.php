@@ -21,6 +21,13 @@ class BorrowModel extends Model
     /* ->paginate($perPage, $page); */
   }
 
+  public function countBook()
+  {
+    return $this->table('sewa')
+      ->select('id')
+      ->countall();
+  }
+
   public function insertPinjam($data)
   {
     return $this->table('sewa')->insert($data);

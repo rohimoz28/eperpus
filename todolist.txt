@@ -1,5 +1,7 @@
 ### Change View Template ###
 
-4. Master data
+1. Master data
     - menu kategori
         -> tambahkan button kembali pada: form tambah kategori dan ubah kategori
+2. Buat ikhtisar ambil data dari database
+3. Buat datatables di menu: Pinjam

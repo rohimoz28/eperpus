@@ -25,12 +25,8 @@
               <div class="card-body">
                 <form action="<?= base_url('borrow/store') ?>" method="POST">
                   <div class="form-group">
-                    <label for="anggota">Nama Anggota</label>
-                    <select class="form-control" name="anggota" id="anggota">
-                      <?php foreach ($members as $member) : ?>
-                        <option value="<?= $member['member_id'] ?>"><?= $member['name'] ?></option>
-                      <?php endforeach; ?>
-                    </select>
+                    <label for="anggota">Judul Buku</label>
+                    <select name="anggota" class="search-member form-control"></select>
                   </div>
                   <div class="form-group">
                     <label for="buku">Judul Buku</label>
@@ -53,5 +49,23 @@
     </div>
   </section>
 </div>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> -->
+<script>
+  $('.search-member').select2({
+    // placeholder: '----- Search -----',
+    ajax: {
+      url: '<?php echo base_url('/borrow/search-member'); ?>',
+      dataType: 'json',
+      delay: 350,
+      cache: true,
+      processResults: function(records) {
+        return {
+          results: records
+        };
+      }
+    }
+  });
+</script>
 
 <?= $this->endSection() ?>

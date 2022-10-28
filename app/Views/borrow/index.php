@@ -2,34 +2,29 @@
 
 <?= $this->section('content') ?>
 
+<!-- Main Content -->
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Peminjaman Buku</h1>
+      <h1>Data Pinjam Buku</h1>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <?php if (session()->getflashdata('success')) : ?>
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Buku berhasil</strong> <?= session()->getFlashdata('success') ?>.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        <?php endif; ?>
+    <div class="section-body">
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header d-flex justify-content-start">
-                <a href="/borrow/create" class="btn btn-primary">Tambah Data</a>
-              </div>
-              <div class="card-body">
-                <table class="table">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <a href="/borrow/create" class="btn btn-primary">Tambah Data</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped" id="table-1">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
+                      <th class="text-center">
+                        #
+                      </th>
                       <th scope="col">Nama Anggota</th>
                       <th scope="col">Judul Buku</th>
                       <th scope="col">Tanggal Pinjam</th>
@@ -50,18 +45,14 @@
                   </tbody>
                 </table>
               </div>
-              <div class="card-footer bg-whitesmoke">
-                <div class="d-flex justify-content-center">
-                  <?= $pager->links('pager', 'default_pager') ?>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
   </section>
 </div>
+
 
 <?= $this->endSection() ?>

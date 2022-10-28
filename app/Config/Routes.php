@@ -58,6 +58,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   // Borrow
   $routes->get('borrow', 'Borrow::index');
   $routes->get('borrow/create', 'Borrow::create');
+  $routes->match(['get', 'post'], 'borrow/search-member', 'Borrow::searchMember');
   // Restore
   $routes->get('restore', 'Restore::index');
   $routes->get('restore/generate-pdf', 'Restore::generatePdf');

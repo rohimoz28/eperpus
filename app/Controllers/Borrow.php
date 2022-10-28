@@ -66,4 +66,21 @@ class Borrow extends BaseController
             return redirect()->to('borrow/index')->with('success', 'ditambahkan');
         }
     }
+
+    public function searchMember()
+    {
+        helper(['form', 'url']);
+
+        $records = [];
+
+        $database = \Config\Database::connect();
+        $sql = $database->table('members');
+
+        $sqlQuery = $sql->like('name', $this->request->getVar('q'))
+            ->select('member_id, name as text')
+            ->limit(5)->get();
+
+        $records = $sqlQuery->getResult();
+        echo json_encode($records);
+    }
 }

@@ -11,8 +11,8 @@
             <li><a class="nav-link" href="<?= base_url('home/index') ?>"><i class="fas fa-thumbs-up"></i> <span>Ikhtisar</span></a></li>
 
             <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="<?= base_url('restore') ?>"><i class="fas fa-thumbs-up"></i> <span>Kembali</span></a></li>
             <li><a class="nav-link" href="<?= base_url('borrow') ?>"><i class="fas fa-cart-plus"></i> <span>Pinjam</span></a></li>
+            <li><a class="nav-link" href="<?= base_url('restore') ?>"><i class="fas fa-thumbs-up"></i> <span>Kembali</span></a></li>
             <li><a class="nav-link" href="<?= base_url('member') ?>"><i class=" fas fa-user"></i> <span>Anggota</span></a></li>
             <li><a class="nav-link" href="<?= base_url('book') ?>"><i class="fas fa-book"></i> <span>Buku</span></a></li>
 
