@@ -12,7 +12,8 @@
       <div class="col-md-10">
         <?php if (session()->getflashdata('success')) : ?>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Kategori Buku berhasil</strong> <?= session()->getFlashdata('success') ?>.
+            <strong>Kategori Buku berhasil</strong>
+            <?= session()->getFlashdata('success') ?>.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -31,7 +32,9 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="kategori">
                   </div>
                   <button type="submit" class="btn btn-primary">Simpan</button>
+                  <a href="<?= base_url('category') ?>" class="btn btn-warning">Kembali</a>
                 </form>
+
               </div>
             </div>
           </div>

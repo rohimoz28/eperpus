@@ -25,9 +25,7 @@ class Restore extends BaseController
             ->where('book_status', 'Kembali')
             ->orderBy('date_return', 'ASC')
             ->paginate($pager, 'pager');
-        /* dd($data); */
 
-        /* $data['sewa'] = $this->kembali->getKembali()->paginate(5, 'pager'); */
         $data['pager'] = $this->kembali->pager;
         $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
 

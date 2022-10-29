@@ -5,7 +5,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Daftar Anggota</h1>
+      <h1>Tambah Data Anggota</h1>
     </div>
 
     <div class="row">

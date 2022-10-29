@@ -31,6 +31,7 @@
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="kategori" value="<?= $category['category_name'] ?>">
                   </div>
                   <button type="submit" class="btn btn-primary">Simpan</button>
+                  <a href="<?= base_url('category') ?>" class="btn btn-warning">Kembali</a>
                 </form>
               </div>
             </div>

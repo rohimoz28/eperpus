@@ -2,14 +2,17 @@
 
 <?= $this->section('content') ?>
 
+<!-- Main Content -->
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h1>Daftar Anggota</h1>
+      <h1>Data Pinjam Buku</h1>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
+    <div class="section-body">
+
+      <div class="row">
+
         <?php if (session()->getflashdata('success')) : ?>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Anggota baru berhasil</strong> <?= session()->getFlashdata('success') ?>.
@@ -19,14 +22,14 @@
           </div>
         <?php endif; ?>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header d-flex justify-content-start">
-                <a href="/member/create" class="btn btn-primary">Tambah Anggota</a>
-              </div>
-              <div class="card-body">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header d-flex justify-content-start">
+              <a href="/member/create" class="btn btn-primary">Tambah Anggota</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped" id="table-1">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -56,14 +59,14 @@
                   </tbody>
                 </table>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
   </section>
 </div>
+
 
 <?= $this->endSection() ?>
