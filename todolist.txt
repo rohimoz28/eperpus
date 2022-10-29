@@ -1,3 +1,19 @@
 ### Change View Template
 
-4. printtopdf
+1. http://localhost:8080/borrow/create -> buat autocomplete pada field anggota & buku
+2. ganti template http://localhost:8080/restore/edit/1 | DONE
+3. tambahkan plugin sweet alert
+
+4. buat seeder :
+        a. anggota -> 100
+        b. buku -> 500
+        c. pinjam -> 200
+5. datatable pinjam dan kembali dibuat limit hanya pada bulan ini (berjalan)
+6. buat pencarian menggunakan daterange pada menu kembali dan pinjam
+
+7. tambahkan buku yg sudah telat kembali di halaman ikhtisar
+
+8. buat menu sidebar: laporan keuangan
+        a. dibuat perbulan
+        b. rincian denda, kondisi buku, buku hilang
+9. buat menu di pinjam buku: telat kembali

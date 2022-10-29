@@ -25,7 +25,7 @@
               <div class="card-body">
                 <form action="<?= base_url('borrow/store') ?>" method="POST">
                   <div class="form-group">
-                    <label for="anggota">Judul Buku</label>
+                    <label for="anggota">Nama Anggota</label>
                     <select name="anggota" class="search-member form-control"></select>
                   </div>
                   <div class="form-group">

@@ -22,9 +22,6 @@
         <div class="row">
           <div class="col-md-6">
             <div class="card">
-              <div class="card-header d-flex justify-content-start">
-                <a href="/member/create" class="btn btn-primary">Tambah Anggota</a>
-              </div>
               <div class="card-body">
                 <?php $validation = \Config\Services::validation(); ?>
                 <form action="<?= base_url('/member/store') ?>" method="POST">
