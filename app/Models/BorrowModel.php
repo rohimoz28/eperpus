@@ -30,6 +30,7 @@ class BorrowModel extends Model
 
   public function insertPinjam($data)
   {
-    return $this->table('sewa')->insert($data);
+    return $this->db->table('sewa')
+      ->insert($data);
   }
 }

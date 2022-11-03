@@ -27,7 +27,7 @@ class RentModel extends Model
 
     public function insertPinjam($data)
     {
-        return $this->table('rents')->insert($data);
+        return $this->db->table('rents')->insert($data);
     }
 
     public function editKembali($id)

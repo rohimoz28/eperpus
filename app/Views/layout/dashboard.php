@@ -18,9 +18,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/stisla/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/stisla/assets/css/components.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <?= $this->renderSection('css'); ?>
 
 </head>
 
@@ -98,8 +96,10 @@
     <script src="<?= base_url() ?>/assets/stisla/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
-    <script src="<?= base_url() ?>/assets/stisla/assets/js/page/index-0.js"></script>
+    <!-- <script src="<?= base_url() ?>/assets/stisla/assets/js/page/index-0.js"></script> -->
     <script src="<?= base_url() ?>/assets/stisla/assets/js/page/modules-datatables.js"></script>
+
+    <?= $this->renderSection('js'); ?>
 </body>
 
 </html>

@@ -57,6 +57,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
   $routes->get('book/delete/(:num)', 'Book::delete/$1');
   // Borrow
   $routes->get('borrow', 'Borrow::index');
+  $routes->post('borrow/store', 'Borrow::store');
   $routes->get('borrow/create', 'Borrow::create');
   $routes->match(['get', 'post'], 'borrow/search-member', 'Borrow::searchMember');
   // Restore

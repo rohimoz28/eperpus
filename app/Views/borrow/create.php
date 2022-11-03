@@ -1,5 +1,12 @@
 <?= $this->extend('layout/dashboard') ?>
 
+<!-- custom css library -->
+<?= $this->section('css') ?>
+<link rel="stylesheet" href="<?= base_url('/assets/css/jquery-ui.css') ?>">
+
+<?= $this->endSection() ?>
+
+<!-- main content -->
 <?= $this->section('content') ?>
 
 <div class="main-content">
@@ -24,9 +31,11 @@
             <div class="card">
               <div class="card-body">
                 <form action="<?= base_url('borrow/store') ?>" method="POST">
+                  <?= csrf_field() ?>
                   <div class="form-group">
                     <label for="anggota">Nama Anggota</label>
-                    <select name="anggota" class="search-member form-control"></select>
+                    <input type="hidden" name="id_anggota" id="id_anggota">
+                    <input class="form-control" name="anggota" id="anggota"></input>
                   </div>
                   <div class="form-group">
                     <label for="buku">Judul Buku</label>
@@ -49,23 +58,32 @@
     </div>
   </section>
 </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> -->
+<?= $this->endSection() ?>
+
+<!-- custom javascript library -->
+<?= $this->section('js') ?>
+<script src="<?= base_url('/assets/js/jquery-ui.js') ?>"></script>
+
 <script>
-  $('.search-member').select2({
-    // placeholder: '----- Search -----',
-    ajax: {
-      url: '<?php echo base_url('/borrow/search-member'); ?>',
-      dataType: 'json',
-      delay: 350,
-      cache: true,
-      processResults: function(records) {
-        return {
-          results: records
-        };
-      }
-    }
+  $(function() {
+    $("#anggota").autocomplete({
+        source: "<?= base_url('/borrow/search-member') ?>",
+        minLength: 1,
+        focus: function(event, ui) {
+          $("#anggota").val(ui.item.text);
+          return false;
+        },
+        select: function(event, ui) {
+          $("#anggota").val(ui.item.text);
+          $("#id_anggota").val(ui.item.id);
+          return false;
+        }
+      })
+      .autocomplete("instance")._renderItem = function(ul, item) {
+        return $("<li>")
+          .append("<div>" + item.text + "</div>")
+          .appendTo(ul);
+      };
   });
 </script>
-
 <?= $this->endSection() ?>

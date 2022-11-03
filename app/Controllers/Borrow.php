@@ -42,28 +42,27 @@ class Borrow extends BaseController
 
   public function store()
   {
-    $id_anggota = $this->request->getPost('anggota');
+    $id_anggota =  $this->request->getPost('id_anggota');
     $id_buku = $this->request->getPost('buku');
     $tgl_pinjam = date('Y-M-d');
 
     $data = [
-      'member_id' => $id_anggota,
-      'book_id' => $id_buku,
+      'member_id' => (int)$id_anggota,
+      'book_id' => (int)$id_buku,
       'date_borrow' => $tgl_pinjam,
       'date_return' => '',
       'late' => 0,
-      'description' => '',
       'late_fine' => 0,
-      'late_book' => 0,
+      'book_fine_id' => 0,
       'sum_fine' => 0,
       'book_status' => 'Pinjam'
     ];
     // dd($data);
-    $store = $this->sewa->insertPinjam($data);
-    // $store = $this->sewa->insert($data);
 
+    $store = $this->sewa->insertPinjam($data);
     if ($store) {
-      return redirect()->to('borrow/index')->with('success', 'ditambahkan');
+      session()->setFlashdata('success', 'ditambahkan');
+      return redirect()->to(base_url('borrow'));
     }
   }
 
@@ -76,8 +75,8 @@ class Borrow extends BaseController
     $database = \Config\Database::connect();
     $sql = $database->table('members');
 
-    $sqlQuery = $sql->like('name', $this->request->getVar('q'))
-      ->select('member_id, name as text')
+    $sqlQuery = $sql->like('name', $this->request->getVar('term'))
+      ->select('member_id as id, name as text')
       ->limit(5)->get();
 
     $records = $sqlQuery->getResult();

@@ -38,6 +38,14 @@ class MemberModel extends Model
     }
   }
 
+  public function getMemberByName($name)
+  {
+    return $this->table('members')
+      ->where('name', $name)
+      ->get()
+      ->getRow();
+  }
+
   public function insertData($data)
   {
     return $this->db->table('members')->insert($data);
