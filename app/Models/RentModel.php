@@ -25,6 +25,13 @@ class RentModel extends Model
     //         ->get()->getResultArray();
     // }
 
+    public function countPinjam()
+    {
+        return $this->table('rents')
+            ->where('book_status', 'Pinjam')
+            ->countall();
+    }
+
     public function insertPinjam($data)
     {
         return $this->db->table('rents')->insert($data);

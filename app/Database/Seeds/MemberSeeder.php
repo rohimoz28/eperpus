@@ -4,11 +4,15 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Database\Seeder;
+use App\Models\MemberModel;
 
 class MemberSeeder extends Seeder
 {
     public function run()
     {
+        $faker = \Faker\Factory::create();
+        $member = new MemberModel();
+
         $data = [
             [
                 'name' => 'Rohim Muhamad',
@@ -60,6 +64,21 @@ class MemberSeeder extends Seeder
             ],
 
         ];
+
+        for ($i = 0; $i <= 190; $i++) {
+
+            ($i <= 50) ? $gender = 'Pria' : 'Wanita';
+
+            $member->save([
+                'name' => $faker->name(),
+                'gender' => $gender,
+                'number' => $faker->phoneNumber(),
+                'email' => $faker->email(),
+                'address' => $faker->address(),
+                'created_at' => Time::now()
+            ]);
+        }
+
         $this->db->table('members')->insertBatch($data);
     }
 }

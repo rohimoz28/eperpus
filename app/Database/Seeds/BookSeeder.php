@@ -2,6 +2,7 @@
 
 namespace App\Database\Seeds;
 
+use App\Models\BookModel;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Database\Seeder;
 
@@ -9,6 +10,9 @@ class BookSeeder extends Seeder
 {
   public function run()
   {
+    $faker = \Faker\Factory::create();
+    $book = new BookModel();
+
     $data = [
       [
         'book_title' => 'Naruto',
@@ -65,6 +69,21 @@ class BookSeeder extends Seeder
         'created_at' => Time::now()
       ]
     ];
+
+    for ($i = 0; $i <= 200; $i++) {
+
+      $number = $faker->numberBetween(2, 3);
+
+      $book->save([
+        'book_title' => $faker->words($number, true),
+        'book_image' => 'default.jpg',
+        'id_category' => $faker->numberBetween(1, 3),
+        'book_writer' => $faker->words($number, true),
+        'book_publisher' => $faker->words($number, true),
+        'book_date_publish' => $faker->date('Y'),
+        'created_at' => Time::now()
+      ]);
+    }
 
     $this->db->table('books')->insertBatch($data);
   }
