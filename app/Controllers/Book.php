@@ -239,4 +239,21 @@ class Book extends BaseController
 
     $writer->save('php://output');
   }
+
+  public function ajaxSearchBook()
+  {
+    helper(['form', 'url']);
+
+    $records = [];
+
+    $database = \Config\Database::connect();
+    $sql = $database->table('books');
+
+    $sqlQuery = $sql->like('book_title', $this->request->getVar('term'))
+      ->select('book_id as id, book_title as text')
+      ->limit(7)->get();
+
+    $records = $sqlQuery->getResult();
+    echo json_encode($records);
+  }
 }

@@ -43,7 +43,7 @@ class Borrow extends BaseController
   public function store()
   {
     $id_anggota =  $this->request->getPost('id_anggota');
-    $id_buku = $this->request->getPost('buku');
+    $id_buku = $this->request->getPost('id_buku');
     $tgl_pinjam = date('Y-M-d');
 
     $data = [
@@ -64,22 +64,5 @@ class Borrow extends BaseController
       session()->setFlashdata('success', 'ditambahkan');
       return redirect()->to(base_url('borrow'));
     }
-  }
-
-  public function searchMember()
-  {
-    helper(['form', 'url']);
-
-    $records = [];
-
-    $database = \Config\Database::connect();
-    $sql = $database->table('members');
-
-    $sqlQuery = $sql->like('name', $this->request->getVar('term'))
-      ->select('member_id as id, name as text')
-      ->limit(5)->get();
-
-    $records = $sqlQuery->getResult();
-    echo json_encode($records);
   }
 }

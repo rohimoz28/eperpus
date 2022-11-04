@@ -39,11 +39,8 @@
                   </div>
                   <div class="form-group">
                     <label for="buku">Judul Buku</label>
-                    <select class="form-control" name="buku" id="buku">
-                      <?php foreach ($books as $book) : ?>
-                        <option value="<?= $book['book_id'] ?>"><?= $book['book_title'] ?></option>
-                      <?php endforeach; ?>
-                    </select>
+                    <input type="hidden" name="id_buku" id="id_buku">
+                    <input class="form-control" name="buku" id="buku"></input>
                   </div>
                   <button type="submit" class="btn btn-primary">Tambah</button>
                   <a href="<?= base_url('borrow') ?>" class="btn btn-warning">Kembali</a>
@@ -67,7 +64,7 @@
 <script>
   $(function() {
     $("#anggota").autocomplete({
-        source: "<?= base_url('/borrow/search-member') ?>",
+        source: "<?= base_url('/member/ajaxSearchMember') ?>",
         minLength: 1,
         focus: function(event, ui) {
           $("#anggota").val(ui.item.text);
@@ -76,6 +73,27 @@
         select: function(event, ui) {
           $("#anggota").val(ui.item.text);
           $("#id_anggota").val(ui.item.id);
+          return false;
+        }
+      })
+      .autocomplete("instance")._renderItem = function(ul, item) {
+        return $("<li>")
+          .append("<div>" + item.text + "</div>")
+          .appendTo(ul);
+      };
+  });
+
+  $(function() {
+    $("#buku").autocomplete({
+        source: "<?= base_url('/book/ajaxSearchBook') ?>",
+        minLength: 1,
+        focus: function(event, ui) {
+          $("#buku").val(ui.item.text);
+          return false;
+        },
+        select: function(event, ui) {
+          $("#buku").val(ui.item.text);
+          $("#id_buku").val(ui.item.id);
           return false;
         }
       })
