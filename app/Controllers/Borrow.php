@@ -20,16 +20,7 @@ class Borrow extends BaseController
 
   public function index()
   {
-    $pager = 5;
-
-    $data['pinjam'] = $this->sewa->join('members', 'members.member_id = rents.member_id')
-      ->join('books', 'books.book_id = rents.book_id')
-      ->where('book_status', 'Pinjam')
-      ->paginate($pager, 'pager');
-
-    $data['pager'] = $this->sewa->pager;
-    $data['currentPage'] = $this->request->getVar('page_pager') ? $this->request->getVar('page_pager') : 1;
-
+    $data['pinjam'] = $this->sewa->getPinjam();
     return view('borrow/index', $data);
   }
 

@@ -32,7 +32,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 1 + (5 * ($currentPage - 1)) ?>
+                    <?php $i = 1 ?>
                     <?php foreach ($pinjam as $res) : ?>
                       <tr>
                         <th scope="row"><?= $i++ ?></th>

@@ -51,8 +51,10 @@
                         <td><?= $book['book_publisher'] ?></td>
                         <td><?= $book['book_date_publish'] ?></td>
                         <td>
-                          <a href="<?= base_url('book/edit/' . $book['book_id']) ?>" class="btn btn-sm btn-warning">Ubah</a>
-                          <a href="<?= base_url('book/delete/' . $book['book_id']) ?>" onclick="return confirm('Yakin ingin hapus?')" class="btn btn-sm btn-danger" title="Hapus">Hapus</a>
+                          <div class="btn-group">
+                            <a href="<?= base_url('book/edit/' . $book['book_id']) ?>" class="btn btn-sm btn-warning mr-1">Ubah</a>
+                            <a href="<?= base_url('book/delete/' . $book['book_id']) ?>" onclick="return confirm('Yakin ingin hapus?')" class="btn btn-sm btn-danger" title="Hapus">Hapus</a>
+                          </div>
                         </td>
                       </tr>
                     <?php endforeach; ?>

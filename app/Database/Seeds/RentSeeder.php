@@ -2,6 +2,7 @@
 
 namespace App\Database\Seeds;
 
+use App\Models\RentModel;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Database\Seeder;
 
@@ -9,6 +10,9 @@ class RentSeeder extends Seeder
 {
     public function run()
     {
+        $faker = \Faker\Factory::create();
+        $rent = new RentModel();
+
         $data = [
             [
                 'member_id' => 3,
@@ -83,6 +87,25 @@ class RentSeeder extends Seeder
                 'created_at' => Time::now()
             ],
         ];
+
+        $date = $faker->dateTimeThisMonth('+20 days');
+        $date_to_string = $date->format('Y-M-d');
+
+        for ($i = 0; $i <= 70; $i++) {
+
+            $rent->save([
+                'member_id' => $faker->numberBetween(1, 197),
+                'book_id' => $faker->numberBetween(1, 200),
+                'date_borrow' => $date_to_string,
+                'date_return' => '',
+                'late' => 0,
+                'book_fine_id' => '',
+                'late_fine' => 0,
+                'sum_fine' => 0,
+                'book_status' => 'Pinjam',
+                'created_at' => Time::now()
+            ]);
+        }
 
         $this->db->table('rents')->insertBatch($data);
     }

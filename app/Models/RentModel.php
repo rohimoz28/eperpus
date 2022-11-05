@@ -16,14 +16,15 @@ class RentModel extends Model
     /* protected $protectFields        = true; */
     protected $allowedFields        = ['member_id', 'book_id', 'date_borrow', 'date_return', 'late', 'description', 'late_fine', 'book_fine', 'sum_fine', 'book_status'];
 
-    // public function getPinjam()
-    // {
-    //     return $this->db->table('rents')
-    //         ->join('members', 'members.member_id=rents.id_member')
-    //         ->join('books', 'books.book_id=rents.id_book')
-    //         ->where('book_status', 'Pinjam')
-    //         ->get()->getResultArray();
-    // }
+    public function getPinjam()
+    {
+        return $this->db->table('rents')
+            ->join('books', 'books.book_id=rents.book_id')
+            ->join('members', 'members.member_id=rents.member_id')
+            ->where('rents.book_status', 'Pinjam')
+            ->get()
+            ->getResultArray();
+    }
 
     public function countPinjam()
     {
